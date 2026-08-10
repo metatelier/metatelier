@@ -157,10 +157,13 @@ function renderizarCatalogo() {
         const fotos = rawFotos.map(formatFotoUrl);
         const tieneVarias = fotos.length > 1;
 
+        const agotadoHTML = p.agotado ? `<div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); display:flex; align-items:center; justify-content:center; z-index:10; pointer-events:none;"><span style="background:#000; color:#fff; padding:10px 20px; font-weight:bold; letter-spacing:2px; font-size:1.2rem;">AGOTADO</span></div>` : '';
+
         let carruselHTML = `
             <div class="producto-galeria" onclick="abrirDetalle(${p.id})">
+                ${agotadoHTML}
                 ${tieneVarias ? '<span class="swipe-hint">Deslizar &rsaquo;</span>' : ''}
-                <div class="producto-carrusel" id="carrusel-${p.id}">
+                <div class="producto-carrusel" id="carrusel-${p.id}" ${p.agotado ? 'style="filter: grayscale(100%);"' : ''}>
         `;
 
         fotos.forEach(foto => {
@@ -197,7 +200,7 @@ function renderizarCatalogo() {
                     <li><span>Medidas</span> <span>${p.dimensiones}</span></li>
                 </ul>
                 <div class="card-actions">
-                    <button class="btn-comprar" onclick="abrirDetalle(${p.id})">Explorar Pieza</button>
+                    <button class="btn-comprar" onclick="abrirDetalle(${p.id})" ${p.agotado ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>${p.agotado ? 'Agotado' : 'Explorar Pieza'}</button>
                 </div>
             </div>
         `;
@@ -415,10 +418,22 @@ window.abrirDetalle = (id) => {
         }, 100);
     }
 
-    btnAddCartDetalle.onclick = () => {
-        agregarABolsa(p.id);
-        modalDetalle.classList.remove('activo');
-    };
+    if (p.agotado) {
+        btnAddCartDetalle.innerText = "Pieza Agotada";
+        btnAddCartDetalle.disabled = true;
+        btnAddCartDetalle.style.opacity = '0.5';
+        btnAddCartDetalle.style.cursor = 'not-allowed';
+        btnAddCartDetalle.onclick = null;
+    } else {
+        btnAddCartDetalle.innerText = "Añadir a la Bolsa";
+        btnAddCartDetalle.disabled = false;
+        btnAddCartDetalle.style.opacity = '1';
+        btnAddCartDetalle.style.cursor = 'pointer';
+        btnAddCartDetalle.onclick = () => {
+            agregarABolsa(p.id);
+            modalDetalle.classList.remove('activo');
+        };
+    }
 
     modalDetalle.classList.add('activo');
 };
@@ -652,6 +667,8 @@ window.prepararEdicionProducto = (id) => {
 
     editandoId = id;
     document.getElementById('nombre').value = prod.nombre || '';
+    document.getElementById('codigo_unico').value = prod.codigo_unico || '';
+    document.getElementById('agotado').checked = prod.agotado || false;
     document.getElementById('categoria').value = prod.categoria || '';
     document.getElementById('precio').value = prod.precio || '';
     document.getElementById('material').value = prod.material || '';
@@ -681,7 +698,7 @@ formAdmin.addEventListener('submit', async (e) => {
     const formData = new FormData(formAdmin);
     const esEdicion = editandoId !== null;
     const targetUrl = esEdicion ? `${API_URL}/${editandoId}` : API_URL;
-    const method = esEdicion ? 'PUT' : 'POST';
+    const method = 'POST'; // Django uses POST for multipart form parsing
     
     try {
         const res = await fetch(targetUrl, { 
@@ -796,6 +813,22 @@ function renderizarBuzonPedidos() {
         return;
     }
 
+    let ventasConcretadas = 0;
+    todosPedidos.forEach(p => {
+        if (p.estado === 'Concretado') {
+            const numTotal = parseFloat((p.total || '0').replace(/[^0-9.-]+/g,""));
+            if (!isNaN(numTotal)) ventasConcretadas += numTotal;
+        }
+    });
+
+    const crmHeader = document.createElement('div');
+    crmHeader.innerHTML = `
+        <div style="background:var(--primary-color); color:#fff; padding:15px; text-align:center; margin-bottom:20px; font-family:var(--font-title); font-size:18px;">
+            Ventas Concretadas Totales: $${ventasConcretadas.toFixed(2)} USD
+        </div>
+    `;
+    buzonPedidosLista.appendChild(crmHeader);
+
     todosPedidos.forEach(ped => {
         const div = document.createElement('div');
         div.className = 'pedido-card';
@@ -807,28 +840,36 @@ function renderizarBuzonPedidos() {
         let itemsHTML = '';
         if (ped.items && ped.items.length > 0) {
             ped.items.forEach(it => {
+                const sku = it.codigo_unico ? ` <span style="font-size:10px; color:#888;">(${it.codigo_unico})</span>` : '';
                 itemsHTML += `
                     <div class="pedido-item-row">
-                        <span>${it.cantidad}x ${it.nombre}</span>
+                        <span>${it.cantidad}x ${it.nombre}${sku}</span>
                         <span>${formatFormatoPrecioUSD(it.precio)}</span>
                     </div>
                 `;
             });
         }
 
+        let badgeColor = '#b59d87'; // Pendiente
+        if (ped.estado === 'Concretado') badgeColor = '#2e7d32';
+        if (ped.estado === 'Cancelado') badgeColor = '#c62828';
+
         div.innerHTML = `
             <div class="pedido-card-header">
                 <span class="pedido-id">Solicitud #${ped.id}</span>
                 <span class="pedido-fecha">${ped.fecha || ''}</span>
             </div>
+            <div style="text-align:right; padding:0 15px;">
+                <span style="display:inline-block; padding:3px 8px; font-size:11px; background:${badgeColor}; color:#fff; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${ped.estado || 'Pendiente'}</span>
+            </div>
             <div class="pedido-cliente-info">
                 <strong>${ped.cliente.nombre}</strong>
-                <span>📧 ${ped.cliente.email}</span>
+                <span>✉ ${ped.cliente.email}</span>
                 <span>📞 ${ped.cliente.telefono || 'No especificado'}</span>
                 <span>📍 ${ped.cliente.direccion}</span>
                 <div class="pedido-contact-actions">
                     ${cleanPhone ? `<a href="${waUrl}" target="_blank" class="btn-whatsapp">💬 WhatsApp</a>` : ''}
-                    <a href="mailto:${ped.cliente.email}?subject=Solicitud de Adquisicion %23${ped.id}" class="btn-email-link">✉️ Enviar Correo</a>
+                    <a href="mailto:${ped.cliente.email}?subject=Solicitud de Adquisicion %23${ped.id}" class="btn-email-link">✉ Enviar Correo</a>
                 </div>
             </div>
             <div class="pedido-items-box">
@@ -838,12 +879,40 @@ function renderizarBuzonPedidos() {
                     <span>${ped.total}</span>
                 </div>
             </div>
+            <div style="padding:15px; display:flex; gap:10px; flex-wrap:wrap;">
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Concretado')" style="flex:1; padding:8px; background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; cursor:pointer;">✅ Concretado</button>
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Cancelado')" style="flex:1; padding:8px; background:#ffebee; color:#c62828; border:1px solid #ef9a9a; cursor:pointer;">❌ Cancelado</button>
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Pendiente')" style="flex:1; padding:8px; background:#fff3e0; color:#ef6c00; border:1px solid #ffcc80; cursor:pointer;">⏳ Pendiente</button>
+            </div>
             <button class="btn-eliminar-pedido" onclick="eliminarPedido(${ped.id})">Eliminar del Buzón</button>
         `;
 
         buzonPedidosLista.appendChild(div);
     });
 }
+
+window.cambiarEstadoPedido = async (id, estado) => {
+    if (!adminPIN) return;
+    try {
+        const res = await fetch(`${PEDIDOS_API_URL}/${id}`, {
+            method: 'POST',
+            headers: { 
+                'x-admin-pin': adminPIN,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ estado: estado })
+        });
+
+        if (res.ok) {
+            mostrarToast(`Estado cambiado a ${estado}`);
+            cargarBuzonPedidos();
+        } else {
+            alert('No se pudo cambiar el estado.');
+        }
+    } catch (err) {
+        alert('Error de conexión al cambiar el estado.');
+    }
+};
 
 window.eliminarPedido = async (id) => {
     if (!adminPIN) return;

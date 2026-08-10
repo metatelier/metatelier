@@ -88,6 +88,8 @@ class PRODUCTO(models.Model):
     precio = models.TextField(blank=True)
     material = models.TextField(blank=True)
     dimensiones = models.TextField(blank=True)
+    codigo_unico = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    agotado = models.BooleanField(default=False)
     categorias = models.ManyToManyField(CATEGORIA, related_name='categorias')
     imagenes = models.ManyToManyField(IMG_PRODUCTO, related_name='imagenes')
 
@@ -113,6 +115,8 @@ class PRODUCTO(models.Model):
             'precio' : self.precio,
             'material' : self.material,
             'dimensiones' : self.dimensiones,
+            'codigo_unico' : self.codigo_unico,
+            'agotado' : self.agotado,
             'categoria' : cat_name,
             'categorias' : cats,
             'imagenes' : self.GetImagnes(),
@@ -133,6 +137,7 @@ class PEDIDO(models.Model):
     cliente_direccion = models.TextField(blank=True)
     items_json = models.TextField(blank=True)
     total = models.TextField(blank=True)
+    estado = models.CharField(max_length=20, default='Pendiente')
 
     def renderJson(self):
         import json
@@ -146,7 +151,8 @@ class PEDIDO(models.Model):
                 'direccion': self.cliente_direccion,
             },
             'items': json.loads(self.items_json) if self.items_json else [],
-            'total': self.total
+            'total': self.total,
+            'estado': self.estado
         }
 
 
