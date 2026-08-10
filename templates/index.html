@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maison Élégance | Boutique de Haute Maroquinerie</title>
     <meta name="description" content="Portal e-commerce de exhibición y adquisición de carteras de autor con estética Quiet Luxury.">
+    <!-- Open Graph Meta Tags para WhatsApp/Telegram -->
+    <meta property="og:title" content="{{CONF_WEB.title_one}}">
+    <meta property="og:description" content="{{CONF_WEB.sub_title}}">
+    <meta property="og:image" content="https://met-atelier.store{% static 'logo.png' %}">
+    <meta property="og:url" content="https://met-atelier.store">
+    <meta property="og:type" content="website">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=130">
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=132">
     <style>
     </style>
 </head>
@@ -21,7 +28,7 @@
     <header class="header" id="main-header">
         <div class="header-container">
             <div class="brand-box">
-                <a href="#" id="brand-logo-text" class="logo">{{CONF_WEB.title_one}}</a>
+                <a href="/" id="brand-logo-text" class="logo">{{CONF_WEB.title_one}}</a>
                 <span id="txt-header-sublogo" class="sub-logo">{{CONF_WEB.sub_title}}</span>
             </div>
             
