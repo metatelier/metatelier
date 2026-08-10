@@ -9,8 +9,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%  static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=130">
     <style>
     </style>
 </head>
@@ -58,10 +59,7 @@
 
     <!-- Filtros de Categoría Dinámicos por Etiqueta -->
     <nav class="categorias-nav" id="categorias-nav">
-        <button id="cat_0" onclick="javascript:CatAction('0');" class="filter-btn active" >Todas las Piezas</button>
-        {% for C in CATEGORIAS %}
-          <button id="cat_{{C.id}}" onclick="javascript:CatAction({{C.id}});" class="filter-btn" >{{C.name}}</button>
-        {% endfor %}
+        <!-- Renderizado dinámicamente por app.js -->
     </nav>
 
     <!-- Catalogo Section -->
