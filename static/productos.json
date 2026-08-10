@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1784769131251,
+    "nombre": "Cartera Lemon",
+    "categoria": "Limitada",
+    "descripcion": "Delicata",
+    "material": "Cuero Italiano",
+    "dimensiones": "23 x 36 x 12",
+    "precio": "44",
+    "imagen": "/uploads/1784769131235-297911454.jpg",
+    "imagenes": [
+      "/uploads/1784769131235-297911454.jpg",
+      "/uploads/1784769131242-720112735.jpg"
+    ]
+  }
+]
