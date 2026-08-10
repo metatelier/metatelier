@@ -739,8 +739,8 @@ async function cargarListaAdmin() {
                     <strong>${p.nombre}</strong> <span style="font-size:11px; color:var(--accent-gold);">[${p.categoria}]</span> - ${formatFormatoPrecioUSD(p.precio)}
                 </div>
                 <div class="actions-admin-item">
-                    <button class="btn-editar-admin" onclick="prepararEdicionProducto(${p.id})">✏️ Editar</button>
-                    <button class="btn-eliminar-item" onclick="eliminar(${p.id})">🗑️ Eliminar</button>
+                    <button class="btn-editar-admin" onclick="prepararEdicionProducto(${p.id})">Editar</button>
+                    <button class="btn-eliminar-item" onclick="eliminar(${p.id})">Eliminar</button>
                 </div>
             `;
             listaAdmin.appendChild(li);
@@ -864,12 +864,12 @@ function renderizarBuzonPedidos() {
             </div>
             <div class="pedido-cliente-info">
                 <strong>${ped.cliente.nombre}</strong>
-                <span>✉ ${ped.cliente.email}</span>
-                <span>📞 ${ped.cliente.telefono || 'No especificado'}</span>
-                <span>📍 ${ped.cliente.direccion}</span>
-                <div class="pedido-contact-actions">
-                    ${cleanPhone ? `<a href="${waUrl}" target="_blank" class="btn-whatsapp">💬 WhatsApp</a>` : ''}
-                    <a href="mailto:${ped.cliente.email}?subject=Solicitud de Adquisicion %23${ped.id}" class="btn-email-link">✉ Enviar Correo</a>
+                <span>${ped.cliente.email}</span>
+                <span>${ped.cliente.telefono || 'No especificado'}</span>
+                <span>${ped.cliente.direccion}</span>
+                <div class="pedido-contact-actions" style="margin-top:15px; border-top:1px solid #f0f0f0; padding-top:10px;">
+                    ${cleanPhone ? `<a href="${waUrl}" target="_blank" class="btn-whatsapp" style="text-decoration:none; display:inline-block; margin-right:10px;">WhatsApp</a>` : ''}
+                    <a href="mailto:${ped.cliente.email}?subject=Solicitud de Adquisicion %23${ped.id}" class="btn-email-link" style="text-decoration:none;">Enviar Correo</a>
                 </div>
             </div>
             <div class="pedido-items-box">
@@ -879,10 +879,10 @@ function renderizarBuzonPedidos() {
                     <span>${ped.total}</span>
                 </div>
             </div>
-            <div style="padding:15px; display:flex; gap:10px; flex-wrap:wrap;">
-                <button onclick="cambiarEstadoPedido(${ped.id}, 'Concretado')" style="flex:1; padding:8px; background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; cursor:pointer;">✅ Concretado</button>
-                <button onclick="cambiarEstadoPedido(${ped.id}, 'Cancelado')" style="flex:1; padding:8px; background:#ffebee; color:#c62828; border:1px solid #ef9a9a; cursor:pointer;">❌ Cancelado</button>
-                <button onclick="cambiarEstadoPedido(${ped.id}, 'Pendiente')" style="flex:1; padding:8px; background:#fff3e0; color:#ef6c00; border:1px solid #ffcc80; cursor:pointer;">⏳ Pendiente</button>
+            <div style="padding:15px; display:flex; gap:10px; flex-wrap:wrap; border-top:1px solid #f0f0f0;">
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Concretado')" style="flex:1; padding:10px; background:var(--primary-color); color:var(--bg-color); border:none; cursor:pointer; font-size:12px; letter-spacing:1px; text-transform:uppercase; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">Concretar Venta</button>
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Cancelado')" style="flex:1; padding:10px; background:transparent; color:#8b0000; border:1px solid #8b0000; cursor:pointer; font-size:12px; letter-spacing:1px; text-transform:uppercase; transition: background 0.3s;" onmouseover="this.style.background='#8b0000'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='#8b0000';">Cancelar</button>
+                <button onclick="cambiarEstadoPedido(${ped.id}, 'Pendiente')" style="flex:1; padding:10px; background:transparent; color:var(--text-muted); border:1px solid var(--border-color); cursor:pointer; font-size:12px; letter-spacing:1px; text-transform:uppercase; transition: background 0.3s;" onmouseover="this.style.background='var(--border-color)';" onmouseout="this.style.background='transparent';">Marcar Pendiente</button>
             </div>
             <button class="btn-eliminar-pedido" onclick="eliminarPedido(${ped.id})">Eliminar del Buzón</button>
         `;
