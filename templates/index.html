@@ -28,7 +28,10 @@
     <header class="header" id="main-header">
         <div class="header-container">
             <div class="brand-box">
-                <a href="/" id="brand-logo-text" class="logo">{{CONF_WEB.title_one}}</a>
+                <a href="/" id="brand-logo-text" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="{% static 'logo.png' %}" alt="Logo" style="height: 35px; width: auto;">
+                    {{CONF_WEB.title_one}}
+                </a>
                 <span id="txt-header-sublogo" class="sub-logo">{{CONF_WEB.sub_title}}</span>
             </div>
             
