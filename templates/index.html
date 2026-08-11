@@ -9,7 +9,7 @@
     <!-- Open Graph Meta Tags para WhatsApp/Telegram -->
     <meta property="og:title" content="{{CONF_WEB.title_one}}">
     <meta property="og:description" content="{{CONF_WEB.sub_title}}">
-    <meta property="og:image" content="https://met-atelier.store{% static 'logo.png' %}">
+    <meta property="og:image" content="https://met-atelier.store{% static 'logo.png' %}?v=2">
     <meta property="og:url" content="https://met-atelier.store">
     <meta property="og:type" content="website">
     
@@ -33,7 +33,7 @@
         <div class="header-container">
             <div class="brand-box">
                 <a href="/" id="brand-logo-text" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                    <img src="{% static 'logo.png' %}" alt="Logo" style="height: 35px; width: auto;">
+                    <img src="{% static 'logo.png' %}?v=2" alt="Logo" style="height: 35px; width: auto;">
                     {{CONF_WEB.title_one}}
                 </a>
                 <span id="txt-header-sublogo" class="sub-logo">{{CONF_WEB.sub_title}}</span>
