@@ -1,0 +1,2418 @@
+Microsoft Windows [Versión 10.0.19045.6466]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\MIKROTIK\Desktop\MET>python servidor_produccion.py
+Iniciando el servidor de producción para MET-ATELIER en el puerto 8080...
+Por favor, NO cierres esta ventana. Si se cierra, la página dejará de funcionar.
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+
+C:\Users\MIKROTIK\Desktop\MET>
+
+C:\Users\MIKROTIK\Desktop\MET>python servidor_produccion.py
+Iniciando el servidor de producción para MET-ATELIER en el puerto 8080...
+Por favor, NO cierres esta ventana. Si se cierra, la página dejará de funcionar.
+Forbidden (Origin checking failed - https://met-atelier.store does not match any trusted origins.): /admin/login/
+WARNING:django.security.csrf:Forbidden (Origin checking failed - https://met-atelier.store does not match any trusted origins.): /admin/login/
+^C
+C:\Users\MIKROTIK\Desktop\MET>python servidor_produccion.py
+Iniciando el servidor de producción para MET-ATELIER en el puerto 8080...
+Por favor, NO cierres esta ventana. Si se cierra, la página dejará de funcionar.
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+ERROR:django.request:Internal Server Error: /api/productos
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\MIKROTIK\Desktop\MET\modelos\views.py", line 62, in api_productos
+    producto = PRODUCTO.objects.create(
+        nombre=nombre,
+    ...<5 lines>...
+        agotado=agotado
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIKROTIK\AppData\Roaming\Python\Python314\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: modelos_producto.codigo_unico
+Not Found: /uploads/tote_taupe.jpg
+WARNING:django.request:Not Found: /uploads/tote_taupe.jpg
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+
+C:\Users\MIKROTIK\Desktop\MET>python servidor_produccion.py
+Iniciando el servidor de producción para MET-ATELIER en el puerto 8080...
+Por favor, NO cierres esta ventana. Si se cierra, la página dejará de funcionar.
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /favicon.png
+WARNING:django.request:Not Found: /favicon.png
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.env
+WARNING:django.request:Not Found: /.env
+Not Found: /aws.env
+WARNING:django.request:Not Found: /aws.env
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /.env.backup
+Not Found: /.env.old
+WARNING:django.request:Not Found: /.env.old
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.env.docker
+WARNING:django.request:Not Found: /.env.docker
+Not Found: /.env.prod
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.aws/credentials
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /wp-content/debug.log
+WARNING:django.request:Not Found: /.aws/credentials
+Not Found: /.env.local
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /wp-content/debug.log
+WARNING:django.request:Not Found: /.env.local
+Not Found: /.env.production
+WARNING:django.request:Not Found: /.env.production
+Not Found: /config.php
+WARNING:django.request:Not Found: /config.php
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /favicon.png
+WARNING:django.request:Not Found: /favicon.png
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /assets/js/qr_modal.js
+WARNING:django.request:Not Found: /assets/js/qr_modal.js
+Not Found: /assets/js/message.js
+WARNING:django.request:Not Found: /assets/js/message.js
+Not Found: /static/style/protect/index.js
+WARNING:django.request:Not Found: /static/style/protect/index.js
+Not Found: /static/style/sys_files/index.js
+WARNING:django.request:Not Found: /static/style/sys_files/index.js
+Not Found: /assets/js/auth.js
+WARNING:django.request:Not Found: /assets/js/auth.js
+Not Found: /bot-connect.js
+WARNING:django.request:Not Found: /bot-connect.js
+Not Found: /js/twint_ch.js
+WARNING:django.request:Not Found: /js/twint_ch.js
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /logger/
+WARNING:django.request:Not Found: /logger/
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /socket.io/
+WARNING:django.request:Not Found: /socket.io/
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /manifest.json
+WARNING:django.request:Not Found: /manifest.json
+Not Found: /api/V1L3Nwb3J0L2RhdGEvbGFuZ3VhZ2U=
+WARNING:django.request:Not Found: /api/V1L3Nwb3J0L2RhdGEvbGFuZ3VhZ2U=
+Not Found: /apple-touch-icon.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp-includes/wlwmanifest.xml
+Not Found: /xmlrpc.php
+WARNING:django.request:Not Found: /xmlrpc.php
+Not Found: /blog/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /blog/wp-includes/wlwmanifest.xml
+Not Found: /web/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /web/wp-includes/wlwmanifest.xml
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wordpress/wp-includes/wlwmanifest.xml
+Not Found: /website/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /website/wp-includes/wlwmanifest.xml
+Not Found: /wp/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp/wp-includes/wlwmanifest.xml
+Not Found: /news/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /news/wp-includes/wlwmanifest.xml
+Not Found: /2018/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2018/wp-includes/wlwmanifest.xml
+Not Found: /2019/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2019/wp-includes/wlwmanifest.xml
+Not Found: /shop/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /shop/wp-includes/wlwmanifest.xml
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp1/wp-includes/wlwmanifest.xml
+Not Found: /test/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /test/wp-includes/wlwmanifest.xml
+Not Found: /media/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /media/wp-includes/wlwmanifest.xml
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp2/wp-includes/wlwmanifest.xml
+Not Found: /site/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /site/wp-includes/wlwmanifest.xml
+Not Found: /cms/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /cms/wp-includes/wlwmanifest.xml
+Not Found: /sito/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /sito/wp-includes/wlwmanifest.xml
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /.well-known/security.txt
+WARNING:django.request:Not Found: /.well-known/security.txt
+Not Found: /.env.test
+WARNING:django.request:Not Found: /.env.test
+Not Found: /backend/.env
+WARNING:django.request:Not Found: /backend/.env
+Not Found: /app/.env
+WARNING:django.request:Not Found: /app/.env
+Not Found: /firebase-adminsdk.json
+WARNING:django.request:Not Found: /firebase-adminsdk.json
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /serviceAccountKey.json
+WARNING:django.request:Not Found: /serviceAccountKey.json
+Not Found: /config.yml
+Not Found: /laravel/.env
+WARNING:django.request:Not Found: /config.yml
+WARNING:django.request:Not Found: /laravel/.env
+Not Found: /config.js
+WARNING:django.request:Not Found: /config.js
+Not Found: /public/.env
+WARNING:django.request:Not Found: /public/.env
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /service-account.json
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /keys.json
+WARNING:django.request:Not Found: /service-account.json
+WARNING:django.request:Not Found: /keys.json
+Not Found: /config.json
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /.env
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:django.request:Not Found: /config.json
+WARNING:django.request:Not Found: /.env
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /api/env
+WARNING:django.request:Not Found: /api/env
+Not Found: /.env.development
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /.env.development
+Not Found: /appsettings.json
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /api/config
+WARNING:django.request:Not Found: /appsettings.json
+Not Found: /.env.local
+WARNING:django.request:Not Found: /api/config
+Not Found: /wp/.env
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /.env.local
+WARNING:django.request:Not Found: /wp/.env
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.env.old
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /.github/workflows/deploy.yml
+WARNING:django.request:Not Found: /.env.old
+Not Found: /application.yml
+WARNING:waitress.queue:Task queue depth is 3
+Not Found: /.aws/config
+WARNING:django.request:Not Found: /.github/workflows/deploy.yml
+WARNING:django.request:Not Found: /application.yml
+WARNING:waitress.queue:Task queue depth is 4
+WARNING:django.request:Not Found: /.aws/config
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 3
+Not Found: /secrets.json
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /robots.txt
+Not Found: /service_account.json
+WARNING:django.request:Not Found: /secrets.json
+Not Found: /actuator/env
+WARNING:django.request:Not Found: /robots.txt
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:django.request:Not Found: /service_account.json
+WARNING:django.request:Not Found: /actuator/env
+Not Found: /api/.env
+WARNING:waitress.queue:Task queue depth is 4
+WARNING:django.request:Not Found: /api/.env
+Not Found: /netlify.toml
+WARNING:django.request:Not Found: /netlify.toml
+Not Found: /env.json
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 4
+WARNING:django.request:Not Found: /env.json
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:waitress.queue:Task queue depth is 3
+WARNING:waitress.queue:Task queue depth is 4
+WARNING:waitress.queue:Task queue depth is 5
+Not Found: /.env.staging
+WARNING:django.request:Not Found: /.env.staging
+Not Found: /.env.bak
+WARNING:waitress.queue:Task queue depth is 6
+Not Found: /web.config
+WARNING:django.request:Not Found: /.env.bak
+Not Found: /local_settings.py
+WARNING:django.request:Not Found: /web.config
+Not Found: /credentials.json
+WARNING:waitress.queue:Task queue depth is 6
+WARNING:django.request:Not Found: /local_settings.py
+WARNING:django.request:Not Found: /credentials.json
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /debug/vars
+WARNING:django.request:Not Found: /debug/vars
+Not Found: /.gitlab-ci.yml
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:django.request:Not Found: /.gitlab-ci.yml
+Not Found: /instance/config.py
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /.npmrc
+WARNING:django.request:Not Found: /instance/config.py
+Not Found: /amplifyconfiguration.json
+Not Found: /settings.json
+WARNING:django.request:Not Found: /.npmrc
+WARNING:waitress.queue:Task queue depth is 5
+WARNING:django.request:Not Found: /amplifyconfiguration.json
+WARNING:django.request:Not Found: /settings.json
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /aws-exports.js
+WARNING:waitress.queue:Task queue depth is 3
+Not Found: /graphql
+WARNING:django.request:Not Found: /aws-exports.js
+Not Found: /.env.production
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /awsconfiguration.json
+WARNING:django.request:Not Found: /graphql
+WARNING:django.request:Not Found: /.env.production
+WARNING:waitress.queue:Task queue depth is 4
+Not Found: /.netrc
+WARNING:django.request:Not Found: /awsconfiguration.json
+WARNING:django.request:Not Found: /.netrc
+WARNING:waitress.queue:Task queue depth is 3
+Not Found: /docker-compose.yml
+WARNING:django.request:Not Found: /docker-compose.yml
+Not Found: /serverless.yml
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:django.request:Not Found: /serverless.yml
+Not Found: /.aws/credentials
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /application.properties
+WARNING:django.request:Not Found: /.aws/credentials
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /application.properties
+WARNING:django.request:Not Found: /.env.backup
+WARNING:waitress.queue:Task queue depth is 2
+Not Found: /terraform.tfvars
+WARNING:django.request:Not Found: /terraform.tfvars
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.env.prod
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /terraform.tfstate
+Not Found: /actuator/heapdump
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /terraform.tfstate
+Not Found: /env.js
+WARNING:django.request:Not Found: /actuator/heapdump
+Not Found: /gcp-credentials.json
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /env.js
+WARNING:django.request:Not Found: /gcp-credentials.json
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /vercel.json
+WARNING:django.request:Not Found: /vercel.json
+Not Found: /swagger.json
+WARNING:django.request:Not Found: /swagger.json
+Not Found: /firebase.json
+WARNING:django.request:Not Found: /firebase.json
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /token.json
+WARNING:django.request:Not Found: /token.json
+Not Found: /actuator/configprops
+WARNING:django.request:Not Found: /actuator/configprops
+Not Found: /key.json
+WARNING:django.request:Not Found: /key.json
+Not Found: /openapi.json
+WARNING:django.request:Not Found: /openapi.json
+Forbidden (CSRF cookie not set.): /graphql
+WARNING:django.security.csrf:Forbidden (CSRF cookie not set.): /graphql
+Not Found: /static/app.js.map
+WARNING:django.request:Not Found: /static/app.js.map
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /wp-includes/ID3/license.txt
+WARNING:django.request:Not Found: /wp-includes/ID3/license.txt
+Not Found: /feed/
+WARNING:django.request:Not Found: /feed/
+Not Found: /xmlrpc.php
+WARNING:django.request:Not Found: /xmlrpc.php
+Not Found: /blog/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /blog/wp-includes/wlwmanifest.xml
+Not Found: /web/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /web/wp-includes/wlwmanifest.xml
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wordpress/wp-includes/wlwmanifest.xml
+Not Found: /wp/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp/wp-includes/wlwmanifest.xml
+Not Found: /2020/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2020/wp-includes/wlwmanifest.xml
+Not Found: /2019/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2019/wp-includes/wlwmanifest.xml
+Not Found: /2021/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2021/wp-includes/wlwmanifest.xml
+Not Found: /shop/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /shop/wp-includes/wlwmanifest.xml
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp1/wp-includes/wlwmanifest.xml
+Not Found: /test/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /test/wp-includes/wlwmanifest.xml
+Not Found: /site/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /site/wp-includes/wlwmanifest.xml
+Not Found: /cms/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /cms/wp-includes/wlwmanifest.xml
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /wp-login.php
+WARNING:django.request:Not Found: /wp-login.php
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /media/system/js/core.js
+WARNING:django.request:Not Found: /media/system/js/core.js
+Not Found: /wp-includes/js/jquery/jquery.js
+WARNING:django.request:Not Found: /wp-includes/js/jquery/jquery.js
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /curl/8585047cfdb016836e9b2a00c92935460a744e0afb83e2306468a8579317d160
+WARNING:django.request:Not Found: /curl/8585047cfdb016836e9b2a00c92935460a744e0afb83e2306468a8579317d160
+Not Found: /.git/
+WARNING:django.request:Not Found: /.git/
+Not Found: /.gitignore
+WARNING:django.request:Not Found: /.gitignore
+Not Found: /.git/hooks/post-commit.sample
+WARNING:django.request:Not Found: /.git/hooks/post-commit.sample
+Not Found: /.git/hooks/post-receive.sample
+WARNING:django.request:Not Found: /.git/hooks/post-receive.sample
+Not Found: /.git/ORIG_HEAD
+WARNING:django.request:Not Found: /.git/ORIG_HEAD
+Not Found: /.git/logs/refs/heads/master
+WARNING:django.request:Not Found: /.git/logs/refs/heads/master
+Not Found: /.git/logs/refs/heads/development
+WARNING:django.request:Not Found: /.git/logs/refs/heads/development
+Not Found: /.git/logs/refs/heads/production
+WARNING:django.request:Not Found: /.git/logs/refs/heads/production
+Not Found: /.git/logs/refs/heads/staging
+WARNING:django.request:Not Found: /.git/logs/refs/heads/staging
+Not Found: /.git/logs/refs/remotes/origin/master
+WARNING:django.request:Not Found: /.git/logs/refs/remotes/origin/master
+Not Found: /.git/refs/heads/master
+WARNING:django.request:Not Found: /.git/refs/heads/master
+Not Found: /.git/logs/refs/remotes/origin/HEAD
+WARNING:django.request:Not Found: /.git/logs/refs/remotes/origin/HEAD
+Not Found: /.git/logs/refs/stash
+WARNING:django.request:Not Found: /.git/logs/refs/stash
+Not Found: /.git/packed-refs
+WARNING:django.request:Not Found: /.git/packed-refs
+Not Found: /.git/logs/refs/remotes/origin/development
+WARNING:django.request:Not Found: /.git/logs/refs/remotes/origin/development
+Not Found: /.git/refs/heads/staging
+WARNING:django.request:Not Found: /.git/refs/heads/staging
+Not Found: /.git/refs/remotes/origin/HEAD
+WARNING:django.request:Not Found: /.git/refs/remotes/origin/HEAD
+Not Found: /.git/refs/heads/production
+WARNING:django.request:Not Found: /.git/refs/heads/production
+Not Found: /.git/refs/heads/development
+WARNING:django.request:Not Found: /.git/refs/heads/development
+Not Found: /.git/refs/remotes/origin/production
+WARNING:django.request:Not Found: /.git/refs/remotes/origin/production
+Not Found: /.git/refs/remotes/origin/master
+WARNING:django.request:Not Found: /.git/refs/remotes/origin/master
+Not Found: /.git/refs/wip/wtree/refs/heads/master
+WARNING:django.request:Not Found: /.git/refs/wip/wtree/refs/heads/master
+Not Found: /.git/refs/wip/wtree/refs/heads/production
+WARNING:django.request:Not Found: /.git/refs/wip/wtree/refs/heads/production
+Not Found: /.git/FETCH_HEAD
+WARNING:django.request:Not Found: /.git/FETCH_HEAD
+Not Found: /.git/refs/wip/wtree/refs/heads/main
+WARNING:django.request:Not Found: /.git/refs/wip/wtree/refs/heads/main
+Not Found: /.git/refs/wip/index/refs/heads/staging
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /.git/refs/wip/index/refs/heads/staging
+Not Found: /.git/refs/wip/wtree/refs/heads/development
+WARNING:django.request:Not Found: /.git/refs/wip/wtree/refs/heads/development
+Not Found: /.git/refs/wip/index/refs/heads/main
+WARNING:waitress.queue:Task queue depth is 2
+WARNING:django.request:Not Found: /.git/refs/wip/index/refs/heads/main
+Not Found: /.git/refs/wip/index/refs/heads/development
+WARNING:django.request:Not Found: /.git/refs/wip/index/refs/heads/development
+Not Found: /.git/refs/remotes/origin/development
+WARNING:waitress.queue:Task queue depth is 1
+WARNING:django.request:Not Found: /.git/refs/remotes/origin/development
+Not Found: /.git/refs/wip/index/refs/heads/master
+WARNING:waitress.queue:Task queue depth is 1
+Not Found: /.git/refs/wip/wtree/refs/heads/staging
+WARNING:django.request:Not Found: /.git/refs/wip/index/refs/heads/master
+Not Found: /.git/refs/wip/index/refs/heads/production
+WARNING:django.request:Not Found: /.git/refs/wip/wtree/refs/heads/staging
+WARNING:django.request:Not Found: /.git/refs/wip/index/refs/heads/production
+Not Found: /.git/refs/stash
+WARNING:django.request:Not Found: /.git/refs/stash
+Not Found: /.git/logs/refs/remotes/origin/staging
+WARNING:django.request:Not Found: /.git/logs/refs/remotes/origin/staging
+Not Found: /.git/logs/refs/remotes/origin/production
+WARNING:django.request:Not Found: /.git/logs/refs/remotes/origin/production
+Not Found: /.git/refs/remotes/origin/staging
+WARNING:django.request:Not Found: /.git/refs/remotes/origin/staging
+Not Found: /.git/objects/00/00000000000000000000000000000000000000
+WARNING:django.request:Not Found: /.git/objects/00/00000000000000000000000000000000000000
+Not Found: /.git/objects/5a/d69589544261298d8c9142ce6be9ec50b2a389
+WARNING:django.request:Not Found: /.git/objects/5a/d69589544261298d8c9142ce6be9ec50b2a389
+Not Found: /wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp-includes/wlwmanifest.xml
+Not Found: /xmlrpc.php
+WARNING:django.request:Not Found: /xmlrpc.php
+Not Found: /blog/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /blog/wp-includes/wlwmanifest.xml
+Not Found: /web/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /web/wp-includes/wlwmanifest.xml
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wordpress/wp-includes/wlwmanifest.xml
+Not Found: /website/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /website/wp-includes/wlwmanifest.xml
+Not Found: /wp/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp/wp-includes/wlwmanifest.xml
+Not Found: /news/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /news/wp-includes/wlwmanifest.xml
+Not Found: /2018/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2018/wp-includes/wlwmanifest.xml
+Not Found: /2019/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /2019/wp-includes/wlwmanifest.xml
+Not Found: /shop/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /shop/wp-includes/wlwmanifest.xml
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp1/wp-includes/wlwmanifest.xml
+Not Found: /test/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /test/wp-includes/wlwmanifest.xml
+Not Found: /media/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /media/wp-includes/wlwmanifest.xml
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /wp2/wp-includes/wlwmanifest.xml
+Not Found: /site/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /site/wp-includes/wlwmanifest.xml
+Not Found: /cms/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /cms/wp-includes/wlwmanifest.xml
+Not Found: /sito/wp-includes/wlwmanifest.xml
+WARNING:django.request:Not Found: /sito/wp-includes/wlwmanifest.xml
+Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+Not Found: /favicon.png
+WARNING:django.request:Not Found: /favicon.png
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
+Not Found: /sitemap.xml
+WARNING:django.request:Not Found: /sitemap.xml
+Not Found: /.env
+WARNING:django.request:Not Found: /.env
+Not Found: /.env
+WARNING:django.request:Not Found: /.env
+Not Found: /.env
+WARNING:django.request:Not Found: /.env
+Not Found: /.env
+WARNING:django.request:Not Found: /.env
+Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+WARNING:django.request:Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+WARNING:django.request:Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+WARNING:django.request:Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+Not Found: /.git/packed-refs
+WARNING:django.request:Not Found: /.git/packed-refs
+Not Found: /.git/packed-refs
+WARNING:django.request:Not Found: /.git/packed-refs
+Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+WARNING:django.request:Not Found: /.git/objects/45/aa9bd087bf325b9cb50e9d6f8d5e665f9ec760
+Not Found: /.git/packed-refs
+WARNING:django.request:Not Found: /.git/packed-refs
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /.env.backup
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /.env.backup
+Not Found: /.git/packed-refs
+WARNING:django.request:Not Found: /.git/packed-refs
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /.env.backup
+Not Found: /.env.old
+WARNING:django.request:Not Found: /.env.old
+Not Found: /.env.old
+WARNING:django.request:Not Found: /.env.old
+Not Found: /.env.backup
+WARNING:django.request:Not Found: /.env.backup
+Not Found: /.env.old
+WARNING:django.request:Not Found: /.env.old
+Not Found: /.env.save
+WARNING:django.request:Not Found: /.env.save
+Not Found: /.env.save
+WARNING:django.request:Not Found: /.env.save
+Not Found: /.env.save
+WARNING:django.request:Not Found: /.env.save
+Not Found: /.env.old
+WARNING:django.request:Not Found: /.env.old
+Not Found: /.env.bak
+WARNING:django.request:Not Found: /.env.bak
+Not Found: /.env.bak
+WARNING:django.request:Not Found: /.env.bak
+Not Found: /.env.save
+WARNING:django.request:Not Found: /.env.save
+Not Found: /.env.bak
+WARNING:django.request:Not Found: /.env.bak
+Not Found: /.env.prod
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /.env.prod
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /.env.bak
+WARNING:django.request:Not Found: /.env.bak
+Not Found: /.env.production
+WARNING:django.request:Not Found: /.env.production
+Not Found: /.env.prod
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /.env.production
+WARNING:django.request:Not Found: /.env.production
+Not Found: /.env.prod
+WARNING:django.request:Not Found: /.env.prod
+Not Found: /.env.staging
+WARNING:django.request:Not Found: /.env.staging
+Not Found: /.env.production
+WARNING:django.request:Not Found: /.env.production
+Not Found: /.env.production
+WARNING:django.request:Not Found: /.env.production
+Not Found: /.env.local
+WARNING:django.request:Not Found: /.env.local
+Not Found: /.env.staging
+WARNING:django.request:Not Found: /.env.staging
+Not Found: /.env.staging
+WARNING:django.request:Not Found: /.env.staging
+Not Found: /.env.live
+WARNING:django.request:Not Found: /.env.live
+Not Found: /.env.staging
+WARNING:django.request:Not Found: /.env.staging
+Not Found: /.env.dev
+WARNING:django.request:Not Found: /.env.dev
+Not Found: /.env.local
+WARNING:django.request:Not Found: /.env.local
+Not Found: /.env.local
+WARNING:django.request:Not Found: /.env.local
+Not Found: /.env.local
+WARNING:django.request:Not Found: /.env.local
+Not Found: /.env.stage
+WARNING:django.request:Not Found: /.env.stage
+Not Found: /.env.live
+WARNING:django.request:Not Found: /.env.live
+Not Found: /.env.live
+WARNING:django.request:Not Found: /.env.live
+Not Found: /.env.live
+WARNING:django.request:Not Found: /.env.live
+Not Found: /.env.dev
+WARNING:django.request:Not Found: /.env.dev
+Not Found: /.env.stage
+WARNING:django.request:Not Found: /.env.stage
+Not Found: /.env.dev
+WARNING:django.request:Not Found: /.env.dev
+Not Found: /.env.dev
+WARNING:django.request:Not Found: /.env.dev
+Not Found: /.env.stage
+WARNING:django.request:Not Found: /.env.stage
+Not Found: /.env.stage
+WARNING:django.request:Not Found: /.env.stage
+Not Found: /config/.env
+WARNING:django.request:Not Found: /config/.env
+Not Found: /config/.env
+WARNING:django.request:Not Found: /config/.env
+Not Found: /app/.env
+WARNING:django.request:Not Found: /app/.env
+Not Found: /env
+WARNING:django.request:Not Found: /env
+Not Found: /env
+WARNING:django.request:Not Found: /env
+Not Found: /app/.env
+WARNING:django.request:Not Found: /app/.env
+Not Found: /config/.env
+WARNING:django.request:Not Found: /config/.env
+Not Found: /config/.env
+WARNING:django.request:Not Found: /config/.env
+Not Found: /app/.env
+WARNING:django.request:Not Found: /app/.env
+Not Found: /app/.env
+WARNING:django.request:Not Found: /app/.env
+Not Found: /api/.env
+WARNING:django.request:Not Found: /api/.env
+Not Found: /api/.env
+WARNING:django.request:Not Found: /api/.env
+Not Found: /application/.env
+WARNING:django.request:Not Found: /application/.env
+Not Found: /application/.env
+WARNING:django.request:Not Found: /application/.env
+Not Found: /backend/.env
+WARNING:django.request:Not Found: /backend/.env
+Not Found: /backend/.env
+WARNING:django.request:Not Found: /backend/.env
+Not Found: /functions/.env
+WARNING:django.request:Not Found: /functions/.env
+Not Found: /functions/.env
+WARNING:django.request:Not Found: /functions/.env
+Not Found: /api/.env
+WARNING:django.request:Not Found: /api/.env
+Not Found: /api/.env
+WARNING:django.request:Not Found: /api/.env
+Not Found: /application/.env
+WARNING:django.request:Not Found: /application/.env
+Not Found: /application/.env
+WARNING:django.request:Not Found: /application/.env
+Not Found: /functions/.env
+WARNING:django.request:Not Found: /functions/.env
+Not Found: /functions/.env
+WARNING:django.request:Not Found: /functions/.env
+Not Found: /robots.txt
+WARNING:django.request:Not Found: /robots.txt
