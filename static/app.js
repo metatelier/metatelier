@@ -534,24 +534,7 @@ const badgePedidosCount = document.getElementById('badge-pedidos-count');
 const tabBadgePedidos = document.getElementById('tab-badge-pedidos');
 const txtFooterBadge = document.getElementById('txt-footer-badge');
 
-// Triple Clic Secreto en el elemento "Quiet Luxury Collection" del Footer
-let clickCountBadge = 0;
-let clickTimerBadge = null;
-
-if (txtFooterBadge) {
-    txtFooterBadge.addEventListener('click', () => {
-        clickCountBadge++;
-        if (clickCountBadge === 1) {
-            clickTimerBadge = setTimeout(() => {
-                clickCountBadge = 0;
-            }, 1500);
-        } else if (clickCountBadge >= 3) {
-            clearTimeout(clickTimerBadge);
-            clickCountBadge = 0;
-            abrirPanelAdministrador();
-        }
-    });
-}
+// Triple Clic Secreto Eliminado
 
 // Pestañas Admin
 const tabBuzonBtn = document.getElementById('tab-buzon-btn');
