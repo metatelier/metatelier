@@ -101,11 +101,6 @@
             <div class="producto-info">
                 <span class="categoria">{{ P.categorias.first.name }}</span>
                 <h2 onclick="abrirDetalle({{P.id}})">{{ P.nombre }}</h2>
-                <p class="descripcion">{{ P.descripcion }}</p>
-                <ul class="detalles">
-                    <li><span>Material</span> <span>{{ P.material }}</span></li>
-                    <li><span>Medidas</span> <span>{{ P.dimensiones }}</span></li>
-                </ul>
                 <div class="card-actions">
                     <button class="btn-comprar" onclick="abrirDetalle({{P.id}})">Explorar Pieza</button>
                 </div>
