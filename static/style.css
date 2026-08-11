@@ -1410,15 +1410,15 @@ body {
 #lista-admin button.btn-eliminar-item:hover { background: transparent; color: #b30000; border-color: #b30000; }
 
 /* Responsive Desktop */
-@media (min-width: 768px) {
-    .hero h1 { font-size: 56px; }
-    .producto { max-width: 550px; }
-    .catalogo-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-        gap: 40px;
-        padding: 0;
-    }
+  @media (min-width: 768px) {
+      .hero h1 { font-size: 50px; }
+      .producto { max-width: 550px; }
+      .catalogo-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+          padding: 0;
+      }
     .producto-info { padding: 25px 20px; }
     .producto-info h2 { font-size: 22px; margin-bottom: 10px; }
     .producto-info .descripcion { 

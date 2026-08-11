@@ -12,6 +12,7 @@ from datetime import datetime, date, time, timedelta
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from .models import *
+from django.db import IntegrityError
 from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
@@ -59,29 +60,34 @@ def api_productos(request):
             codigo_unico = f"MET-A-{uuid.uuid4().hex[:6].upper()}"
         agotado = request.POST.get('agotado', 'false').lower() == 'true'
         
-        producto = PRODUCTO.objects.create(
-            nombre=nombre,
-            descripcion=descripcion,
-            precio=precio,
-            material=material,
-            dimensiones=dimensiones,
-            codigo_unico=codigo_unico,
-            agotado=agotado
-        )
-        
-        cats_str = request.POST.get('categoria', '')
-        if cats_str:
-            for cat_name in cats_str.split(','):
-                cat_name = cat_name.strip()
-                if cat_name:
-                    c, _ = CATEGORIA.objects.get_or_create(name=cat_name)
-                    producto.categorias.add(c)
-        
-        for f in request.FILES.getlist('imagenes'):
-            img = IMG_PRODUCTO.objects.create(imagen=f)
-            producto.imagenes.add(img)
+        try:
+            producto = PRODUCTO.objects.create(
+                nombre=nombre,
+                descripcion=descripcion,
+                precio=precio,
+                material=material,
+                dimensiones=dimensiones,
+                codigo_unico=codigo_unico,
+                agotado=agotado
+            )
             
-        return JsonResponse({'status': 'ok', 'producto': producto.renderJson()})
+            cats_str = request.POST.get('categoria', '')
+            if cats_str:
+                for cat_name in cats_str.split(','):
+                    cat_name = cat_name.strip()
+                    if cat_name:
+                        c, _ = CATEGORIA.objects.get_or_create(name=cat_name)
+                        producto.categorias.add(c)
+            
+            for f in request.FILES.getlist('imagenes'):
+                img = IMG_PRODUCTO.objects.create(imagen=f)
+                producto.imagenes.add(img)
+                
+            return JsonResponse({'status': 'ok', 'producto': producto.renderJson()})
+        except IntegrityError:
+            return JsonResponse({'error': f'El código único {codigo_unico} ya está en uso. Por favor, elige otro o déjalo en blanco.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
         
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
@@ -131,8 +137,12 @@ def api_productos_detail(request, pid):
                     producto.imagenes.add(img)
                     
             return JsonResponse({'status': 'ok', 'producto': producto.renderJson()})
+        except IntegrityError:
+            return JsonResponse({'error': f'El código único ya está en uso. Por favor, elige otro.'}, status=400)
         except PRODUCTO.DoesNotExist:
-            return JsonResponse({'error': 'Not found'}, status=404)
+            return JsonResponse({'error': 'Producto no encontrado'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
 
 def api_textos(request):
     from django.http import JsonResponse

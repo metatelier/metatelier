@@ -194,11 +194,6 @@ function renderizarCatalogo() {
             <div class="producto-info">
                 <span class="categoria">${p.categoria}</span>
                 <h2 onclick="abrirDetalle(${p.id})">${p.nombre}</h2>
-                <p class="descripcion">${p.descripcion}</p>
-                <ul class="detalles">
-                    <li><span>Material</span> <span>${p.material}</span></li>
-                    <li><span>Medidas</span> <span>${p.dimensiones}</span></li>
-                </ul>
                 <div class="card-actions">
                     <button class="btn-comprar" onclick="abrirDetalle(${p.id})" ${p.agotado ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>${p.agotado ? 'Agotado' : 'Explorar Pieza'}</button>
                 </div>

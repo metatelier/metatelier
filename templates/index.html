@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=132">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=133">
     <style>
         :root {
             --font-title: {{CONF_WEB.font_family_titles|default:"'Playfair Display', serif"|safe}};
@@ -423,6 +423,6 @@
         $("#cat_"+id_cat).addClass("active");
       }
     </script>
-    <script src="{% static 'app.js' %}?v=124"></script>
+    <script src="{% static 'app.js' %}?v=125"></script>
 </body>
 </html>
