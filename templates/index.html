@@ -20,6 +20,10 @@
     <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}?v=132">
     <style>
+        :root {
+            --font-title: {{CONF_WEB.font_family_titles|default:"'Playfair Display', serif"|safe}};
+            --font-body: {{CONF_WEB.font_family_base|default:"'Lato', sans-serif"|safe}};
+        }
     </style>
 </head>
 <body>
@@ -126,19 +130,19 @@
 
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4 id="txt-footer-col1-tit">Atelier</h4>
+                    <h4 id="txt-footer-col1-tit">{{CONF_WEB.footer_col1_title}}</h4>
                     <p id="txt-footer-col1-desc">{{CONF_WEB.atelier|linebreaksbr}}</p>
                 </div>
                 <div class="footer-col">
-                    <h4 id="txt-footer-col2-tit">Navegación</h4>
+                    <h4 id="txt-footer-col2-tit">{{CONF_WEB.footer_col2_title}}</h4>
                     <div class="footer-links">
-                        <a href="/">Inicio</a>
-                        <a href="#catalogo-container">Catálogo</a>
-                        <a href="#" onclick="alert('Atención al cliente Concierge Maison Élégance: {{CONF_WEB.contacto}}')">Concierge Private</a>
+                        <a href="/">{{CONF_WEB.footer_link_inicio}}</a>
+                        <a href="#catalogo-container">{{CONF_WEB.footer_link_catalogo}}</a>
+                        <a href="#" onclick="alert('Atención al cliente: {{CONF_WEB.contacto}}')">{{CONF_WEB.footer_link_concierge}}</a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4 id="txt-footer-col3-tit">Contacto</h4>
+                    <h4 id="txt-footer-col3-tit">{{CONF_WEB.footer_col3_title}}</h4>
                     <p id="txt-footer-col3-desc">{{CONF_WEB.contacto|linebreaksbr}}</p>
                 </div>
             </div>
@@ -161,14 +165,14 @@
                 <button id="btn-cerrar-bolsa" class="close-btn">&times;</button>
             </div>
             <div id="cart-items" class="cart-items-container">
-                <p class="cart-empty">Tu bolsa de compras está vacía.</p>
+                <p class="cart-empty">{{CONF_WEB.txt_bolsa_vacia}}</p>
             </div>
             <div class="cart-footer">
                 <div class="cart-subtotal">
-                    <span>Subtotal Estimado</span>
+                    <span>{{CONF_WEB.txt_subtotal}}</span>
                     <span id="cart-total">$0.00 USD</span>
                 </div>
-                <button id="btn-checkout" class="btn-checkout" disabled>Solicitar Adquisición</button>
+                <button id="btn-checkout" class="btn-checkout" disabled>{{CONF_WEB.txt_btn_comprar}}</button>
             </div>
         </aside>
     </div>
@@ -177,7 +181,7 @@
     <div id="modal-detalle" class="modal-overlay">
         <div class="modal-mobile modal-detalle-content">
             <div class="modal-header">
-                <h3 id="detalle-nombre">Detalle de la Pieza</h3>
+                <h3 id="detalle-nombre">{{CONF_WEB.txt_modal_detalle_titulo}}</h3>
                 <button id="btn-cerrar-detalle">&times;</button>
             </div>
             <div class="detalle-body">
@@ -208,7 +212,7 @@
                         <div class="luxury-divider-light"></div>
                         <div class="spec-row">
                             <span class="spec-label">Disponibilidad</span>
-                            <span class="badge-stock">Pieza Única de Atelier</span>
+                            <span class="badge-stock">{{CONF_WEB.txt_modal_badge}}</span>
                         </div>
                     </div>
 
@@ -236,11 +240,11 @@
     <div id="modal-checkout" class="modal-overlay">
         <div class="modal-mobile">
             <div class="modal-header">
-                <h3>Solicitud de Adquisición</h3>
+                <h3>{{CONF_WEB.txt_modal_checkout_titulo}}</h3>
                 <button id="btn-cerrar-checkout">&times;</button>
             </div>
             <form id="form-checkout" class="form-luxury">
-                <p class="checkout-intro">Ingresa tus datos de Concierge para coordinar la entrega privada de tus piezas seleccionadas.</p>
+                <p class="checkout-intro">{{CONF_WEB.txt_modal_checkout_intro}}</p>
 
                 <div class="form-group">
                     <label for="cliente-nombre">Nombre Completo</label>

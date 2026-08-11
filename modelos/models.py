@@ -21,6 +21,34 @@ class CONF_WEB(models.Model):
     quiet = models.TextField(blank=True)
     hero_titulo = models.TextField(blank=True)
     hero_desc_main = models.TextField(blank=True)
+    
+    # --- Nuevos Campos Dinámicos ---
+    # SEO & Metadata
+    meta_title = models.TextField(blank=True, default='MET | ATELIER - Pura Elegancia a la Moda.')
+    meta_description = models.TextField(blank=True, default='MET | ATELIER - Pura Elegancia a la Moda.')
+    
+    # Footer Sections
+    footer_col1_title = models.TextField(blank=True, default='Atelier')
+    footer_col2_title = models.TextField(blank=True, default='Navegación')
+    footer_col3_title = models.TextField(blank=True, default='Contacto')
+    footer_link_inicio = models.TextField(blank=True, default='Inicio')
+    footer_link_catalogo = models.TextField(blank=True, default='Catálogo')
+    footer_link_concierge = models.TextField(blank=True, default='Concierge Private')
+    
+    # Cart & Modals
+    txt_bolsa_vacia = models.TextField(blank=True, default='Tu bolsa de compras está vacía.')
+    txt_subtotal = models.TextField(blank=True, default='Subtotal Estimado')
+    txt_btn_comprar = models.TextField(blank=True, default='Solicitar Adquisición')
+    txt_modal_detalle_titulo = models.TextField(blank=True, default='Detalle de la Pieza')
+    txt_modal_badge = models.TextField(blank=True, default='Pieza Única de Atelier')
+    txt_modal_checkout_titulo = models.TextField(blank=True, default='Solicitud de Adquisición')
+    txt_modal_checkout_intro = models.TextField(blank=True, default='Ingresa tus datos de Concierge para coordinar la entrega privada de tus piezas seleccionadas.')
+    
+    # Typography Settings
+    font_family_titles = models.TextField(blank=True, default="'Playfair Display', serif")
+    font_family_base = models.TextField(blank=True, default="'Lato', sans-serif")
+    base_font_size = models.TextField(blank=True, default="14px")
+
     admin_password = models.CharField(max_length=100, default='G89qpjksr**')
 
     def renderJson(self):
@@ -39,7 +67,25 @@ class CONF_WEB(models.Model):
             'copy' : self.copy,
             'quiet' : self.quiet,
             'hero_titulo': self.hero_titulo,
-            'hero_desc_main': self.hero_desc_main
+            'hero_desc_main': self.hero_desc_main,
+            'meta_title': self.meta_title,
+            'meta_description': self.meta_description,
+            'footer_col1_title': self.footer_col1_title,
+            'footer_col2_title': self.footer_col2_title,
+            'footer_col3_title': self.footer_col3_title,
+            'footer_link_inicio': self.footer_link_inicio,
+            'footer_link_catalogo': self.footer_link_catalogo,
+            'footer_link_concierge': self.footer_link_concierge,
+            'txt_bolsa_vacia': self.txt_bolsa_vacia,
+            'txt_subtotal': self.txt_subtotal,
+            'txt_btn_comprar': self.txt_btn_comprar,
+            'txt_modal_detalle_titulo': self.txt_modal_detalle_titulo,
+            'txt_modal_badge': self.txt_modal_badge,
+            'txt_modal_checkout_titulo': self.txt_modal_checkout_titulo,
+            'txt_modal_checkout_intro': self.txt_modal_checkout_intro,
+            'font_family_titles': self.font_family_titles,
+            'font_family_base': self.font_family_base,
+            'base_font_size': self.base_font_size
         }
 
     class Meta:
