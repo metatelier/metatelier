@@ -118,14 +118,14 @@ class IMG_PRODUCTO(models.Model):
     def renderJson(self):
         return {
             'id' : self.id,
-            'url' : self.imagen.url
+            'url' : self.imagen.url if self.imagen else ''
         }
 
     class Meta:
         verbose_name = "IMG PRODUCTO"
         verbose_name_plural = "IMG PRODUCTO"
     def __str__(self):
-        return str(self.imagen.url)
+        return str(self.imagen.url) if self.imagen else ''
 
 
 class PRODUCTO(models.Model):

@@ -17,7 +17,10 @@ from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 
 def GetMenu():
-    return CONF_WEB.objects.all()[0].renderJson()
+    conf = CONF_WEB.objects.first()
+    if not conf:
+        conf = CONF_WEB.objects.create()
+    return conf.renderJson()
 
 class Index(TemplateView):
     template_name = "index.html"
