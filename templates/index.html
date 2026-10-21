@@ -381,24 +381,28 @@
             <!-- Pestaña 4: Respaldos y Restauración de Base de Datos -->
             <div id="tab-respaldos-content" class="tab-content">
                 <div class="buzon-header">
-                    <h4>Gestión de Respaldos de Seguridad</h4>
-                    <p class="buzon-sub">Exporta una copia de seguridad completa a tu teléfono o restaura tus productos y textos guardados en 1 solo clic.</p>
+                    <h4>Gestión de Respaldos GIT (GitHub)</h4>
+                    <p class="buzon-sub">Genera nuevas versiones correlativas en GitHub o restaura cualquier versión previa de tu tienda.</p>
                 </div>
 
                 <div class="backup-box-container">
                     <div class="backup-card">
-                        <h5>1. Descargar Copia de Seguridad (Exportar)</h5>
-                        <p>Descarga un archivo <code>.json</code> con todas tus carteras publicadas, buzón de solicitudes y personalización de textos.</p>
-                        <button id="btn-export-backup" class="btn-guardar" style="background:var(--accent-gold); color:var(--text-espresso);">💾 Descargar Copia de Seguridad</button>
+                        <h5>1. Crear Copia GIT</h5>
+                        <p>Empaqueta tus productos, imágenes, base de datos y diseño, continuando la numeración de versiones y subiéndolo automáticamente a GitHub.</p>
+                        <button id="btn-export-backup" class="btn-guardar" style="background:var(--accent-gold); color:var(--text-espresso);">💾 Crear Copia GIT</button>
                     </div>
 
                     <div class="luxury-divider"></div>
 
                     <div class="backup-card">
-                        <h5>2. Restaurar Copia de Seguridad (Importar)</h5>
-                        <p>Selecciona un archivo de respaldo previamente descargado para restaurar tu boutique al instante.</p>
-                        <input type="file" id="input-import-file" accept=".json" class="input-file-luxury">
-                        <button id="btn-import-backup" class="btn-guardar" style="margin-top:10px;">📥 Restaurar Copia de Seguridad</button>
+                        <h5>2. Restaurar GIT</h5>
+                        <p>Selecciona qué versión previa de GitHub deseas restaurar en tu tienda:</p>
+                        <div style="margin-bottom: 10px;">
+                            <select id="select-git-version" class="input-file-luxury" style="width: 100%; padding: 10px; border: 1px solid #ccc; font-size: 0.95rem; border-radius: 4px; background: #fff; cursor: pointer;">
+                                <option value="">-- Cargando versiones de GitHub... --</option>
+                            </select>
+                        </div>
+                        <button id="btn-import-backup" class="btn-guardar" style="margin-top:5px;">📥 Restaurar GIT</button>
                     </div>
                 </div>
             </div>

@@ -5,8 +5,9 @@ const API_URL = '/api/productos';
 const PEDIDOS_API_URL = '/api/pedidos';
 const TEXTOS_API_URL = '/api/textos';
 const LOGIN_API_URL = '/api/admin/login';
-const EXPORT_BACKUP_URL = '/api/backup/export';
-const IMPORT_BACKUP_URL = '/api/backup/import';
+const GIT_BACKUP_URL = '/api/git/backup';
+const GIT_VERSIONS_URL = '/api/git/versions';
+const GIT_RESTORE_URL = '/api/git/restore';
 
 function formatFotoUrl(urlObj) {
     let url = urlObj;
@@ -555,6 +556,7 @@ if (tabBuzonBtn && tabInventarioBtn && tabRespaldosBtn) {
         ocultarPestañas();
         tabRespaldosBtn.classList.add('active');
         tabRespaldosContent.classList.add('active');
+        if (adminPIN) cargarVersionesGit();
     });
 }
 
@@ -910,10 +912,38 @@ window.eliminarPedido = async (id) => {
     }
 };
 
-// --- 9. Exportación e Importación de Respaldos de Seguridad ---
+// --- 9. Respaldos y Restauración GIT (GitHub) ---
 const btnExportBackup = document.getElementById('btn-export-backup');
 const btnImportBackup = document.getElementById('btn-import-backup');
-const inputImportFile = document.getElementById('input-import-file');
+const selectGitVersion = document.getElementById('select-git-version');
+
+async function cargarVersionesGit() {
+    const select = document.getElementById('select-git-version');
+    if (!select) return;
+    select.innerHTML = '<option value="">-- Conectando con GitHub... --</option>';
+
+    try {
+        const res = await fetch(GIT_VERSIONS_URL, {
+            headers: { 'x-admin-pin': adminPIN }
+        });
+        if (res.ok) {
+            const data = await res.json();
+            if (data.versions && data.versions.length > 0) {
+                let options = '<option value="">-- Elige la versión que deseas restaurar --</option>';
+                data.versions.forEach(v => {
+                    options += `<option value="${v.hash}">[${v.hash}] ${v.subject} (${v.date})</option>`;
+                });
+                select.innerHTML = options;
+            } else {
+                select.innerHTML = '<option value="">-- No se encontraron versiones en GitHub --</option>';
+            }
+        } else {
+            select.innerHTML = '<option value="">-- Error al cargar versiones (Verifica tu PIN) --</option>';
+        }
+    } catch (err) {
+        select.innerHTML = '<option value="">-- Error de conexión con el servidor --</option>';
+    }
+}
 
 if (btnExportBackup) {
     btnExportBackup.addEventListener('click', async () => {
@@ -922,79 +952,94 @@ if (btnExportBackup) {
             return;
         }
 
+        const nota = prompt('¿Deseas agregar una nota o detalle a este respaldo? (Opcional):', '');
+        if (nota === null) return; // Cancelado
+
+        btnExportBackup.disabled = true;
+        const textoOriginal = btnExportBackup.innerText;
+        btnExportBackup.innerText = '⏳ Subiendo a GitHub...';
+
         try {
-            const res = await fetch(EXPORT_BACKUP_URL, {
-                headers: { 'x-admin-pin': adminPIN }
+            const res = await fetch(GIT_BACKUP_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-admin-pin': adminPIN
+                },
+                body: JSON.stringify({ nota: nota })
             });
 
-            if (res.ok) {
-                const data = await res.json();
-                const jsonStr = JSON.stringify(data, null, 2);
-                const blob = new Blob([jsonStr], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                
-                const fechaHoy = new Date().toISOString().slice(0, 10);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `met_atelier_respaldo_${fechaHoy}.json`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                mostrarToast('Copia de seguridad descargada en tu dispositivo');
+            const data = await res.json();
+            if (res.ok && data.status === 'ok') {
+                alert(`¡Éxito! ${data.message}`);
+                mostrarToast(`Respaldo ${data.version} guardado en GitHub`);
+                cargarVersionesGit();
             } else {
-                alert('No se pudo descargar el respaldo. Verifica tu PIN.');
+                alert(`Error al respaldar en GitHub: ${data.error || 'Error desconocido'}`);
             }
         } catch (err) {
-            alert('Error de conexión al exportar el respaldo.');
+            alert('Error de conexión al conectar con el servidor.');
+        } finally {
+            btnExportBackup.disabled = false;
+            btnExportBackup.innerText = textoOriginal;
         }
     });
 }
 
-if (btnImportBackup && inputImportFile) {
+if (btnImportBackup) {
     btnImportBackup.addEventListener('click', async () => {
         if (!adminPIN) {
             alert('Debes estar autenticado como Administrador.');
             return;
         }
 
-        const file = inputImportFile.files[0];
-        if (!file) {
-            alert('Por favor selecciona un archivo .json de copia de seguridad primero.');
+        const select = document.getElementById('select-git-version');
+        const targetHash = select ? select.value : '';
+
+        if (!targetHash) {
+            alert('Por favor selecciona qué versión de GitHub deseas restaurar.');
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            try {
-                const jsonContent = JSON.parse(e.target.result);
-                
-                const res = await fetch(IMPORT_BACKUP_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-admin-pin': adminPIN
-                    },
-                    body: JSON.stringify(jsonContent)
-                });
+        const selectedText = select.options[select.selectedIndex].text;
+        const confirmar = confirm(`¿Estás seguro de que deseas restaurar la tienda a esta versión?
 
-                if (res.ok) {
-                    alert('¡Copia de seguridad restaurada con éxito! La página se actualizará ahora.');
-                    cargarTienda();
-                    if (adminPIN) {
-                        cargarListaAdmin();
-                        cargarBuzonPedidos();
-                    }
-                    mostrarToast('Restauración completada');
-                } else {
-                    alert('Error al importar el respaldo. Verifica tu PIN.');
-                }
-            } catch (err) {
-                alert('El archivo seleccionado no es un respaldo JSON válido.');
+${selectedText}
+
+Todos los productos, fotos, textos y base de datos volverán exactamente al estado de ese respaldo.`);
+        if (!confirmar) return;
+
+        btnImportBackup.disabled = true;
+        const textoOriginal = btnImportBackup.innerText;
+        btnImportBackup.innerText = '⏳ Restaurando versión de GitHub...';
+
+        try {
+            const res = await fetch(GIT_RESTORE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-admin-pin': adminPIN
+                },
+                body: JSON.stringify({ hash: targetHash })
+            });
+
+            const data = await res.json();
+            if (res.ok && data.status === 'ok') {
+                alert(`¡Restauración completada con éxito!
+
+${data.message}
+
+La página se recargará ahora.`);
+                window.location.reload();
+            } else {
+                alert(`Error al restaurar: ${data.error || 'Error desconocido'}`);
             }
-        };
-        reader.readAsText(file);
+        } catch (err) {
+            alert('Error de conexión al procesar la restauración.');
+        } finally {
+            btnImportBackup.disabled = false;
+            btnImportBackup.innerText = textoOriginal;
+        }
     });
 }
 

@@ -214,3 +214,145 @@ def api_admin_login(request):
         except:
             pass
     return JsonResponse({'error': 'Unauthorized'}, status=401)
+
+@csrf_exempt
+def api_git_backup(request):
+    from django.http import JsonResponse
+    import subprocess, re, json
+    
+    if not _is_admin(request):
+        return JsonResponse({'error': 'Unauthorized'}, status=401)
+        
+    if request.method == 'POST':
+        try:
+            nota = ''
+            if request.body:
+                try:
+                    data = json.loads(request.body)
+                    nota = data.get('nota', '').strip()
+                except:
+                    pass
+            
+            # 1. Determinar siguiente version correlativa
+            out = subprocess.check_output(['git', 'log', '-n', '50', '--pretty=format:%s'], text=True, encoding='utf-8')
+            versions = []
+            for line in out.splitlines():
+                m = re.search(r'v(\d+)\.(\d+)\.(\d+)', line)
+                if m:
+                    versions.append((int(m.group(1)), int(m.group(2)), int(m.group(3))))
+            
+            latest = max(versions) if versions else (1, 0, 0)
+            next_ver = f"v{latest[0]}.{latest[1]}.{latest[2] + 1}"
+            
+            commit_msg = f"{next_ver} - {nota if nota else 'Respaldo manual desde panel web'}"
+            
+            # 2. Agregar cambios
+            subprocess.run(['git', 'add', '.'], check=True)
+            
+            # 3. Comprobar si hay cambios o hacer commit allow-empty
+            status = subprocess.check_output(['git', 'status', '--porcelain'], text=True, encoding='utf-8')
+            if status.strip():
+                subprocess.run(['git', 'commit', '-m', commit_msg], check=True)
+            else:
+                subprocess.run(['git', 'commit', '--allow-empty', '-m', f"{commit_msg} (Sin cambios)"], check=True)
+            
+            # 4. Push a GitHub
+            push_res = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True, encoding='utf-8')
+            if push_res.returncode != 0:
+                return JsonResponse({'error': f'Error al subir a GitHub: {push_res.stderr}'}, status=500)
+                
+            return JsonResponse({
+                'status': 'ok',
+                'version': next_ver,
+                'message': f'Copia de seguridad {next_ver} creada y subida a GitHub exitosamente.'
+            })
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+            
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+@csrf_exempt
+def api_git_versions(request):
+    from django.http import JsonResponse
+    import subprocess
+    
+    if not _is_admin(request):
+        return JsonResponse({'error': 'Unauthorized'}, status=401)
+        
+    try:
+        out = subprocess.check_output(
+            ['git', 'log', '-n', '40', '--pretty=format:%h|%s|%ad', '--date=format:%d/%m/%Y %H:%M'],
+            text=True, encoding='utf-8'
+        )
+        versions = []
+        for line in out.splitlines():
+            parts = line.strip().split('|', 2)
+            if len(parts) == 3:
+                versions.append({
+                    'hash': parts[0],
+                    'subject': parts[1],
+                    'date': parts[2]
+                })
+        return JsonResponse({'status': 'ok', 'versions': versions})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
+def api_git_restore(request):
+    from django.http import JsonResponse
+    import subprocess, json, re
+    
+    if not _is_admin(request):
+        return JsonResponse({'error': 'Unauthorized'}, status=401)
+        
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            target_hash = str(data.get('hash', '')).strip()
+            
+            if not target_hash or not re.match(r'^[a-fA-F0-9]{4,40}$', target_hash):
+                return JsonResponse({'error': 'Hash de versión inválido.'}, status=400)
+                
+            # Siguiente versión correlativa para el commit de restauración
+            out = subprocess.check_output(['git', 'log', '-n', '50', '--pretty=format:%s'], text=True, encoding='utf-8')
+            versions = []
+            for line in out.splitlines():
+                m = re.search(r'v(\d+)\.(\d+)\.(\d+)', line)
+                if m:
+                    versions.append((int(m.group(1)), int(m.group(2)), int(m.group(3))))
+            latest = max(versions) if versions else (1, 0, 0)
+            next_ver = f"v{latest[0]}.{latest[1]}.{latest[2] + 1}"
+            
+            # Obtener nombre/asunto del commit objetivo
+            target_subject = subprocess.check_output(
+                ['git', 'log', '-n', '1', '--pretty=format:%s', target_hash],
+                text=True, encoding='utf-8'
+            ).strip()
+            
+            # 1. Asegurar cambios pendientes actuales antes de restaurar
+            subprocess.run(['git', 'add', '.'], check=True)
+            status = subprocess.check_output(['git', 'status', '--porcelain'], text=True, encoding='utf-8')
+            if status.strip():
+                subprocess.run(['git', 'commit', '-m', f"Auto-backup de seguridad antes de restaurar"], check=True)
+            
+            # 2. Restaurar archivos al estado del commit seleccionado
+            subprocess.run(['git', 'checkout', target_hash, '--', '.'], check=True)
+            
+            # 3. Registrar la restauración como nueva versión en la secuencia
+            restore_msg = f"{next_ver} - Restauracion a version [{target_hash}] ({target_subject})"
+            subprocess.run(['git', 'add', '.'], check=True)
+            subprocess.run(['git', 'commit', '-m', restore_msg], check=True)
+            
+            # 4. Sincronizar con GitHub
+            subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+            
+            return JsonResponse({
+                'status': 'ok',
+                'version': next_ver,
+                'message': f'Tienda restaurada exitosamente a la versión [{target_hash}]. Quedó registrada como {next_ver}.'
+            })
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+            
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+

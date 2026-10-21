@@ -11,6 +11,9 @@ urlpatterns = [
     path('api/pedidos', api_pedidos, name='api_pedidos'),
     path('api/pedidos/<int:pid>', api_pedidos_detail, name='api_pedidos_detail'),
     path('api/admin/login', api_admin_login, name='api_admin_login'),
+    path('api/git/backup', api_git_backup, name='api_git_backup'),
+    path('api/git/versions', api_git_versions, name='api_git_versions'),
+    path('api/git/restore', api_git_restore, name='api_git_restore'),
 ]
 
 app_name = "modelos"
