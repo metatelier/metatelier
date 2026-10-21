@@ -341,8 +341,18 @@ def api_git_restore(request):
             # 3. Registrar la restauración como nueva versión en la secuencia
             restore_msg = f"{next_ver} - Restauracion a version [{target_hash}] ({target_subject})"
             subprocess.run(['git', 'add', '.'], check=True)
-            subprocess.run(['git', 'commit', '-m', restore_msg], check=True)
+            status_after = subprocess.check_output(['git', 'status', '--porcelain'], text=True, encoding='utf-8')
+            if status_after.strip():
+                subprocess.run(['git', 'commit', '-m', restore_msg], check=True)
+            else:
+                subprocess.run(['git', 'commit', '--allow-empty', '-m', f"{restore_msg} (Sin diferencias)"], check=True)
             
+            # Sincronizar archivos estaticos
+            try:
+                subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'], check=False)
+            except:
+                pass
+
             # 4. Sincronizar con GitHub
             subprocess.run(['git', 'push', 'origin', 'main'], check=True)
             
