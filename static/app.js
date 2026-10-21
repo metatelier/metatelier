@@ -14,9 +14,6 @@ function formatFotoUrl(urlObj) {
     
     if (!url) return '/uploads/tote_taupe.jpg';
     if (url.startsWith('http')) return url;
-    if (window.location.port && window.location.port !== `${BACKEND_PORT}`) {
-        return `http://${window.location.hostname || 'localhost'}:${BACKEND_PORT}${url}`;
-    }
     return url;
 }
 
