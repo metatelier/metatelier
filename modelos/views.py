@@ -215,23 +215,10 @@ def api_admin_login(request):
             pass
     return JsonResponse({'error': 'Unauthorized'}, status=401)
 
-def _git_run(*args):
-    import subprocess
-    res = subprocess.run(
-        list(args),
-        capture_output=True,
-        text=True,
-        encoding='utf-8'
-    )
-    if res.returncode != 0:
-        err = res.stderr.strip() or res.stdout.strip()
-        raise Exception(f"Git error ({res.returncode}): {err}")
-    return res.stdout.strip()
-
 @csrf_exempt
 def api_git_backup(request):
     from django.http import JsonResponse
-    import re, json
+    import subprocess, re, json
     
     if not _is_admin(request):
         return JsonResponse({'error': 'Unauthorized'}, status=401)
@@ -246,8 +233,8 @@ def api_git_backup(request):
                 except:
                     pass
             
-            # 1. Determinar siguiente versión correlativa
-            out = _git_run('git', 'log', '-n', '50', '--pretty=format:%s')
+            # 1. Determinar siguiente version correlativa
+            out = subprocess.check_output(['git', 'log', '-n', '50', '--pretty=format:%s'], text=True, encoding='utf-8')
             versions = []
             for line in out.splitlines():
                 m = re.search(r'v(\d+)\.(\d+)\.(\d+)', line)
@@ -260,17 +247,19 @@ def api_git_backup(request):
             commit_msg = f"{next_ver} - {nota if nota else 'Respaldo manual desde panel web'}"
             
             # 2. Agregar cambios
-            _git_run('git', 'add', '.')
+            subprocess.run(['git', 'add', '.'], check=True)
             
             # 3. Comprobar si hay cambios o hacer commit allow-empty
-            status = _git_run('git', 'status', '--porcelain')
-            if status:
-                _git_run('git', 'commit', '-m', commit_msg)
+            status = subprocess.check_output(['git', 'status', '--porcelain'], text=True, encoding='utf-8')
+            if status.strip():
+                subprocess.run(['git', 'commit', '-m', commit_msg], check=True)
             else:
-                _git_run('git', 'commit', '--allow-empty', '-m', f"{commit_msg} (Sin cambios)")
+                subprocess.run(['git', 'commit', '--allow-empty', '-m', f"{commit_msg} (Sin cambios)"], check=True)
             
             # 4. Push a GitHub
-            _git_run('git', 'push', 'origin', 'main')
+            push_res = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True, encoding='utf-8')
+            if push_res.returncode != 0:
+                return JsonResponse({'error': f'Error al subir a GitHub: {push_res.stderr}'}, status=500)
                 
             return JsonResponse({
                 'status': 'ok',
@@ -285,12 +274,16 @@ def api_git_backup(request):
 @csrf_exempt
 def api_git_versions(request):
     from django.http import JsonResponse
+    import subprocess
     
     if not _is_admin(request):
         return JsonResponse({'error': 'Unauthorized'}, status=401)
         
     try:
-        out = _git_run('git', 'log', '-n', '40', '--pretty=format:%h|%s|%ad', '--date=format:%d/%m/%Y %H:%M')
+        out = subprocess.check_output(
+            ['git', 'log', '-n', '40', '--pretty=format:%h|%s|%ad', '--date=format:%d/%m/%Y %H:%M'],
+            text=True, encoding='utf-8'
+        )
         versions = []
         for line in out.splitlines():
             parts = line.strip().split('|', 2)
@@ -307,8 +300,7 @@ def api_git_versions(request):
 @csrf_exempt
 def api_git_restore(request):
     from django.http import JsonResponse
-    from django.db import connections
-    import json, re, subprocess
+    import subprocess, json, re
     
     if not _is_admin(request):
         return JsonResponse({'error': 'Unauthorized'}, status=401)
@@ -322,7 +314,7 @@ def api_git_restore(request):
                 return JsonResponse({'error': 'Hash de versión inválido.'}, status=400)
                 
             # Siguiente versión correlativa para el commit de restauración
-            out = _git_run('git', 'log', '-n', '50', '--pretty=format:%s')
+            out = subprocess.check_output(['git', 'log', '-n', '50', '--pretty=format:%s'], text=True, encoding='utf-8')
             versions = []
             for line in out.splitlines():
                 m = re.search(r'v(\d+)\.(\d+)\.(\d+)', line)
@@ -332,43 +324,27 @@ def api_git_restore(request):
             next_ver = f"v{latest[0]}.{latest[1]}.{latest[2] + 1}"
             
             # Obtener nombre/asunto del commit objetivo
-            target_subject = _git_run('git', 'log', '-n', '1', '--pretty=format:%s', target_hash)
+            target_subject = subprocess.check_output(
+                ['git', 'log', '-n', '1', '--pretty=format:%s', target_hash],
+                text=True, encoding='utf-8'
+            ).strip()
             
             # 1. Asegurar cambios pendientes actuales antes de restaurar
-            _git_run('git', 'add', '.')
-            status = _git_run('git', 'status', '--porcelain')
-            if status:
-                _git_run('git', 'commit', '-m', 'Auto-backup de seguridad antes de restaurar')
+            subprocess.run(['git', 'add', '.'], check=True)
+            status = subprocess.check_output(['git', 'status', '--porcelain'], text=True, encoding='utf-8')
+            if status.strip():
+                subprocess.run(['git', 'commit', '-m', f"Auto-backup de seguridad antes de restaurar"], check=True)
             
-            # 2. CERRAR CONEXIONES SQLITE PARA LIBERAR ARCHIVO BLOQUEADO EN WINDOWS
-            connections.close_all()
+            # 2. Restaurar archivos al estado del commit seleccionado
+            subprocess.run(['git', 'checkout', target_hash, '--', '.'], check=True)
             
-            # 3. Restaurar archivos al estado del commit seleccionado
-            try:
-                _git_run('git', 'checkout', target_hash, '--', '.')
-            except Exception as e:
-                # Si Windows mantiene el candado sobre db.sqlite3, restauramos el resto y sobreescribimos db en binario
-                if 'db.sqlite3' in str(e):
-                    _git_run('git', 'checkout', target_hash, '--', 'modelos/', 'templates/', 'static/', 'staticfiles/', 'productos/', 'LuxuryMonsei/')
-                    db_bytes = subprocess.check_output(['git', 'show', f"{target_hash}:db.sqlite3"])
-                    with open('db.sqlite3', 'wb') as f_db:
-                        f_db.write(db_bytes)
-                else:
-                    raise
-            
-            # 4. Registrar la restauración como nueva versión en la secuencia
+            # 3. Registrar la restauración como nueva versión en la secuencia
             restore_msg = f"{next_ver} - Restauracion a version [{target_hash}] ({target_subject})"
-            _git_run('git', 'add', '.')
-            _git_run('git', 'commit', '--allow-empty', '-m', restore_msg)
+            subprocess.run(['git', 'add', '.'], check=True)
+            subprocess.run(['git', 'commit', '-m', restore_msg], check=True)
             
-            # Sincronizar archivos estáticos por si cambiaron
-            try:
-                subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'], capture_output=True)
-            except:
-                pass
-
-            # 5. Sincronizar con GitHub
-            _git_run('git', 'push', 'origin', 'main')
+            # 4. Sincronizar con GitHub
+            subprocess.run(['git', 'push', 'origin', 'main'], check=True)
             
             return JsonResponse({
                 'status': 'ok',
@@ -379,3 +355,4 @@ def api_git_restore(request):
             return JsonResponse({'error': str(e)}, status=500)
             
     return JsonResponse({'error': 'Method not allowed'}, status=405)
+
