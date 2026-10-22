@@ -307,7 +307,8 @@ def api_git_versions(request):
 @csrf_exempt
 def api_git_restore(request):
     from django.http import JsonResponse
-    import json, re
+    from django.db import connections
+    import json, re, subprocess
     
     if not _is_admin(request):
         return JsonResponse({'error': 'Unauthorized'}, status=401)
@@ -339,22 +340,34 @@ def api_git_restore(request):
             if status:
                 _git_run('git', 'commit', '-m', 'Auto-backup de seguridad antes de restaurar')
             
-            # 2. Restaurar archivos al estado del commit seleccionado
-            _git_run('git', 'checkout', target_hash, '--', '.')
+            # 2. CERRAR CONEXIONES SQLITE PARA LIBERAR ARCHIVO BLOQUEADO EN WINDOWS
+            connections.close_all()
             
-            # 3. Registrar la restauración como nueva versión en la secuencia
+            # 3. Restaurar archivos al estado del commit seleccionado
+            try:
+                _git_run('git', 'checkout', target_hash, '--', '.')
+            except Exception as e:
+                # Si Windows mantiene el candado sobre db.sqlite3, restauramos el resto y sobreescribimos db en binario
+                if 'db.sqlite3' in str(e):
+                    _git_run('git', 'checkout', target_hash, '--', 'modelos/', 'templates/', 'static/', 'staticfiles/', 'productos/', 'LuxuryMonsei/')
+                    db_bytes = subprocess.check_output(['git', 'show', f"{target_hash}:db.sqlite3"])
+                    with open('db.sqlite3', 'wb') as f_db:
+                        f_db.write(db_bytes)
+                else:
+                    raise
+            
+            # 4. Registrar la restauración como nueva versión en la secuencia
             restore_msg = f"{next_ver} - Restauracion a version [{target_hash}] ({target_subject})"
             _git_run('git', 'add', '.')
             _git_run('git', 'commit', '--allow-empty', '-m', restore_msg)
             
             # Sincronizar archivos estáticos por si cambiaron
             try:
-                import subprocess
                 subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'], capture_output=True)
             except:
                 pass
 
-            # 4. Sincronizar con GitHub
+            # 5. Sincronizar con GitHub
             _git_run('git', 'push', 'origin', 'main')
             
             return JsonResponse({
