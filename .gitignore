@@ -1,10 +1,21 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.log
+
+# Entorno y Configuración Local
+.env
+*.env.local
+
+# Respaldos Locales Temporales
 respaldo_log.txt
 temp_status.txt
 test_output*.html
-"MET DESDE ASISTENTE DE CONSOLA F12/"
+docs/logs_historicos/
+
+# IDEs
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace

@@ -1,0 +1,37 @@
+<!-- Filtros de Categoría Dinámicos por Etiqueta -->
+<nav class="categorias-nav" id="categorias-nav">
+    <!-- Renderizado dinámicamente por app.js -->
+</nav>
+
+<!-- Catalogo Section -->
+<main class="catalogo-wrapper">
+    <div class="section-title">
+        <span id="txt-section-tag">{{CONF_WEB.etiqueta_cat}}</span>
+        <h2 id="catalogo-titulo">{{CONF_WEB.titulo_sec_catalogo}}</h2>
+    </div>
+    <div id="catalogo-container" class="catalogo-container">
+      
+    {% for P in PRODUCTOS %}
+      <div class="producto visible P_ID{{P.id}}">
+        <div class="producto-galeria" onclick="abrirDetalle({{P.id}})">
+            <div class="producto-carrusel" id="carrusel-{{P.id}}">
+                {% for PI in P.GetImagnes %}
+                <div class="carrusel-slide">
+                    <img src="{{ PI.url }}" alt="{{P.nombre}}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="producto-info">
+            <span class="categoria">{{ P.categorias.first.name }}</span>
+            <h2 onclick="abrirDetalle({{P.id}})">{{ P.nombre }}</h2>
+            <div class="card-actions">
+                <button class="btn-comprar" onclick="abrirDetalle({{P.id}})">Explorar Pieza</button>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    </div>
+</main>

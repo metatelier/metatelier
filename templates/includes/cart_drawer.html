@@ -1,0 +1,19 @@
+<!-- Sidebar Bolsa de Compras Privada -->
+<div id="cart-drawer" class="cart-drawer-overlay">
+    <aside class="cart-drawer">
+        <div class="cart-header">
+            <h3>Bolsa de Adquisición</h3>
+            <button id="btn-cerrar-bolsa" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items-container">
+            <p class="cart-empty">{{CONF_WEB.txt_bolsa_vacia}}</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>{{CONF_WEB.txt_subtotal}}</span>
+                <span id="cart-total">$0.00 USD</span>
+            </div>
+            <button id="btn-checkout" class="btn-checkout" disabled>{{CONF_WEB.txt_btn_comprar}}</button>
+        </div>
+    </aside>
+</div>

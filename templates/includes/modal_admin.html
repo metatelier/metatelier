@@ -1,0 +1,131 @@
+<!-- Modal Admin Overlay (Buzón + Inventario + Textos + Respaldos) -->
+<div id="modal-admin" class="modal-overlay">
+    <div class="modal-mobile modal-admin-custom">
+        <div class="modal-header">
+            <h3>Atelier Concierge</h3>
+            <div class="modal-admin-actions">
+                <button id="btn-logout-admin" class="btn-logout-admin" title="Cerrar Sesión Administrador">Cerrar Sesión</button>
+                <button id="btn-cerrar-admin" aria-label="Cerrar">×</button>
+            </div>
+        </div>
+
+        <!-- Pestañas de navegación Admin -->
+        <div class="admin-tabs">
+            <button id="tab-buzon-btn" class="admin-tab active">
+                Buzón <span id="tab-badge-pedidos" class="tab-badge">0</span>
+            </button>
+            <button id="tab-inventario-btn" class="admin-tab">
+                Inventario
+            </button>
+            <button id="tab-respaldos-btn" class="admin-tab">
+                Respaldos
+            </button>
+        </div>
+
+        <!-- Pestaña 1: Buzón de Solicitudes de Pedidos -->
+        <div id="tab-buzon-content" class="tab-content active">
+            <div class="buzon-header">
+                <h4>Solicitudes de Adquisición Recibidas</h4>
+                <p class="buzon-sub">Los pedidos enviados por los clientes quedan guardados en este buzón hasta que decidas eliminarlos.</p>
+            </div>
+            <div id="buzon-pedidos-lista" class="buzon-lista"></div>
+        </div>
+
+        <!-- Pestaña 2: Formulario de Carga / Edición e Inventario -->
+        <div id="tab-inventario-content" class="tab-content">
+            <div class="form-header-admin">
+                <h4 id="form-producto-titulo">Publicar Nueva Pieza</h4>
+                <button type="button" id="btn-cancelar-edicion" class="btn-cancelar-edicion" style="display:none;">✕ Cancelar Edición</button>
+            </div>
+            <form id="form-producto" class="form-luxury" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nombre">Nombre de la Pieza</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="ej. Le Tote Minimaliste" required>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="codigo_unico">Código Único (SKU)</label>
+                        <input type="text" id="codigo_unico" name="codigo_unico" placeholder="ej. MET-A-001" pattern="^MET-A-.*$" title="Debe comenzar con MET-A-">
+                        <small>Si se deja en blanco, se autogenerará (ej. MET-A-A1B2C3).</small>
+                    </div>
+                    <div class="form-group" style="display:flex; align-items:center; gap: 10px; margin-top:20px;">
+                        <input type="checkbox" id="agotado" name="agotado" value="true" style="width:20px; height:20px; accent-color: var(--primary-color);">
+                        <label for="agotado" style="margin:0; font-weight:600; color:var(--text-color);">Marcar como AGOTADO</label>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="categoria">Categoría / Etiqueta de Filtro</label>
+                        <input type="text" id="categoria" name="categoria" placeholder="ej. Verano, Edición Limitada, Noche..." required>
+                        <small>Al escribir una categoría nueva (ej. "Verano"), se creará automáticamente su botón de filtro para tus clientes.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio (ej. $1,450.00 USD)</label>
+                        <input type="text" id="precio" name="precio" placeholder="ej. $1,450.00 USD" required>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="material">Material</label>
+                        <input type="text" id="material" name="material" placeholder="ej. Piel de Becerro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dimensiones">Dimensiones</label>
+                        <input type="text" id="dimensiones" name="dimensiones" placeholder="ej. 34 x 26 x 14 cm" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción Breve</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Detalles de artesanía y acabado..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagenes" id="label-imagenes">Fotografías de la Pieza (Galería de Fotos / Archivos)</label>
+                    <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple class="input-file-luxury">
+                    <small id="help-imagenes">Abre la galería de fotos y almacenamiento de tu dispositivo para seleccionar una o varias imágenes.</small>
+                </div>
+
+                <button type="submit" id="btn-submit-producto" class="btn-guardar">Publicar Pieza</button>
+            </form>
+
+            <div class="admin-list-section">
+                <h4>Inventario Actual</h4>
+                <ul id="lista-admin"></ul>
+            </div>
+        </div>
+
+        <!-- Pestaña 4: Respaldos y Restauración de Base de Datos -->
+        <div id="tab-respaldos-content" class="tab-content">
+            <div class="buzon-header">
+                <h4>Gestión de Respaldos GIT (GitHub)</h4>
+                <p class="buzon-sub">Genera nuevas versiones correlativas en GitHub o restaura cualquier versión previa de tu tienda.</p>
+            </div>
+
+            <div class="backup-box-container">
+                <div class="backup-card">
+                    <h5>1. Crear Copia GIT</h5>
+                    <p>Empaqueta tus productos, imágenes, base de datos y diseño, continuando la numeración de versiones y subiéndolo automáticamente a GitHub.</p>
+                    <button id="btn-export-backup" class="btn-guardar" style="background:var(--accent-gold); color:var(--text-espresso);">💾 Crear Copia GIT</button>
+                </div>
+
+                <div class="luxury-divider"></div>
+
+                <div class="backup-card">
+                    <h5>2. Restaurar GIT</h5>
+                    <p>Selecciona qué versión previa de GitHub deseas restaurar en tu tienda:</p>
+                    <div style="margin-bottom: 10px;">
+                        <select id="select-git-version" class="input-file-luxury" style="width: 100%; padding: 10px; border: 1px solid #ccc; font-size: 0.95rem; border-radius: 4px; background: #fff; cursor: pointer;">
+                            <option value="">-- Cargando versiones de GitHub... --</option>
+                        </select>
+                    </div>
+                    <button id="btn-import-backup" class="btn-guardar" style="margin-top:5px;">📥 Restaurar GIT</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

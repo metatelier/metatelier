@@ -1,0 +1,102 @@
+<!-- Modal Detalle Rápido de Producto -->
+<div id="modal-detalle" class="modal-overlay">
+    <div class="modal-mobile modal-detalle-content">
+        <div class="modal-header">
+            <h3 id="detalle-nombre">{{CONF_WEB.txt_modal_detalle_titulo}}</h3>
+            <button id="btn-cerrar-detalle">&times;</button>
+        </div>
+        <div class="detalle-body">
+            <div id="detalle-galeria" class="detalle-galeria"></div>
+            
+            <div class="detalle-info">
+                <div class="detalle-header-block">
+                    <span id="detalle-categoria" class="categoria">Limitada</span>
+                    <h2 id="detalle-titulo">Cartera Lemon</h2>
+                </div>
+
+                <div class="luxury-divider"></div>
+
+                <p id="detalle-descripcion" class="descripcion">Delicata</p>
+                
+                <div class="luxury-divider"></div>
+
+                <div class="detalles-tecnicos">
+                    <div class="spec-row">
+                        <span class="spec-label">Material Noble</span>
+                        <span id="detalle-material" class="spec-val">Cuero Italiano</span>
+                    </div>
+                    <div class="luxury-divider-light"></div>
+                    <div class="spec-row">
+                        <span class="spec-label">Dimensiones</span>
+                        <span id="detalle-dimensiones" class="spec-val">23 x 36 x 12</span>
+                    </div>
+                    <div class="luxury-divider-light"></div>
+                    <div class="spec-row">
+                        <span class="spec-label">Disponibilidad</span>
+                        <span class="badge-stock">{{CONF_WEB.txt_modal_badge}}</span>
+                    </div>
+                </div>
+
+                <div class="cuidados-box">
+                    <h4>Cuidados de la Piel</h4>
+                    <p>Guardar en su funda antipolvo original. Evitar la exposición prolongada a la luz directa y la humedad.</p>
+                </div>
+
+                <div class="luxury-divider"></div>
+
+                <div class="precio-action-block-vertical">
+                    <button id="btn-add-cart-detalle" class="btn-comprar btn-comprar-full">Añadir a la Bolsa</button>
+                    <div class="precio-usd-container">
+                        <span class="precio-usd-tag">Precio de Adquisición:</span>
+                        <span id="detalle-precio" class="precio-usd-val">$ 1,450.00 USD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Formulario de Checkout / Solicitud Privada -->
+<div id="modal-checkout" class="modal-overlay">
+    <div class="modal-mobile modal-checkout-content">
+        <div class="modal-header">
+            <h3>{{CONF_WEB.txt_modal_checkout_titulo}}</h3>
+            <button id="btn-cerrar-checkout">&times;</button>
+        </div>
+        <form id="form-checkout" class="form-luxury">
+            <p class="checkout-intro">{{CONF_WEB.txt_modal_checkout_intro}}</p>
+
+            <div class="form-group">
+                <label for="cliente-nombre">Nombre Completo</label>
+                <input type="text" id="cliente-nombre" required placeholder="ej. Victoria de la Serna">
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="cliente-email">Correo Electrónico</label>
+                    <input type="email" id="cliente-email" required placeholder="victoria@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="cliente-telefono">Teléfono / WhatsApp</label>
+                    <input type="tel" id="cliente-telefono" required placeholder="+52 55 1234 5678">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cliente-direccion">Dirección de Entrega</label>
+                <textarea id="cliente-direccion" required placeholder="Calle, Número, Ciudad y Código Postal..."></textarea>
+            </div>
+
+            <div class="checkout-resumen">
+                <h4>Resumen de Pedido</h4>
+                <div id="checkout-resumen-lista"></div>
+                <div class="checkout-total-line">
+                    <span>Total Final:</span>
+                    <strong id="checkout-total-val">$0.00 USD</strong>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-guardar">Confirmar Reserva de Piezas</button>
+        </form>
+    </div>
+</div>

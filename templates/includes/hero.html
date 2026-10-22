@@ -1,0 +1,10 @@
+<!-- Hero Section -->
+<section class="hero">
+    <span id="txt-hero-tag" class="hero-tag">{{CONF_WEB.hero_des}}</span>
+    <h1 id="txt-hero-titulo">{% if CONF_WEB.hero_titulo %}{{CONF_WEB.hero_titulo}}{% endif %}</h1>
+    <p id="txt-hero-desc" class="hero-desc">{% if CONF_WEB.hero_desc_main %}{{CONF_WEB.hero_desc_main|linebreaksbr}}{% endif %}</p>
+    <div class="scroll-indicator">
+        <span id="txt-hero-scroll">{{CONF_WEB.text_scroll}}</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
