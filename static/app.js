@@ -1,4 +1,4 @@
-const BACKEND_PORT = 8000;
+
 
 // Rutas de API
 const API_URL = '/api/productos';
@@ -520,12 +520,12 @@ const formProductoTitulo = document.getElementById('form-producto-titulo');
 const btnSubmitProducto = document.getElementById('btn-submit-producto');
 const btnCancelarEdicion = document.getElementById('btn-cancelar-edicion');
 const inputImagenes = document.getElementById('imagenes');
-const formTextos = document.getElementById('form-textos');
+
 const listaAdmin = document.getElementById('lista-admin');
 const buzonPedidosLista = document.getElementById('buzon-pedidos-lista');
 const badgePedidosCount = document.getElementById('badge-pedidos-count');
 const tabBadgePedidos = document.getElementById('tab-badge-pedidos');
-const txtFooterBadge = document.getElementById('txt-footer-badge');
+
 
 // Triple Clic Secreto Eliminado
 

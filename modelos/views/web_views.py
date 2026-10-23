@@ -2,11 +2,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from modelos.services.catalog_service import get_site_context, get_menu_config
+from modelos.services.catalog_service import get_site_context
 
-# Helper para compatibilidad histórica
-def GetMenu():
-    return get_menu_config()
+
 
 class Index(TemplateView):
     template_name = "index.html"

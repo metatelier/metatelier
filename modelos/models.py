@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
-from datetime import date
-from django.template.loader import render_to_string
+
+
+
 
 # Create your models here.
 class CONF_WEB(models.Model):
