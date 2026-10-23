@@ -74,41 +74,6 @@ body {
     margin-top: 2px;
 }
 
-/* Insignia Tasa BCV Top Corner */
-.bcv-top-badge {
-    background: rgba(197, 160, 89, 0.1);
-    border: 1px solid rgba(197, 160, 89, 0.4);
-    color: var(--text-espresso);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: default;
-    transition: background 0.3s ease;
-}
-
-.bcv-top-badge:hover {
-    background: rgba(197, 160, 89, 0.2);
-}
-
-.bcv-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #25D366;
-    display: inline-block;
-    box-shadow: 0 0 6px rgba(37, 211, 102, 0.6);
-}
-
-.bcv-text {
-    font-family: var(--font-body);
-    font-size: 10px;
-    color: var(--text-espresso);
-}
 
 .header-actions {
     display: flex;
@@ -128,28 +93,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.icon-btn-admin {
-    background: transparent;
-    border: 1px solid var(--border-fine);
-    color: var(--text-espresso);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-family: var(--font-body);
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-}
-
-.icon-btn-admin:hover {
-    background: var(--text-espresso);
-    color: var(--bg-white);
-    border-color: var(--text-espresso);
-}
 
 .icon-btn:hover, .cart-btn:hover {
     color: var(--accent-gold);
@@ -566,22 +509,6 @@ body {
     color: var(--bg-white);
 }
 
-.btn-detalle-icon {
-    background: transparent;
-    border: 1px solid var(--border-fine);
-    padding: 0 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.btn-detalle-icon:hover {
-    border-color: var(--text-espresso);
-    color: var(--text-espresso);
-}
 
 /* Modal Detalle Rápido - Precio DEBAJO del Botón en USD */
 .modal-detalle-content {
@@ -721,23 +648,6 @@ body {
     font-weight: 600;
 }
 
-.precio-usd-note {
-    font-size: 10px;
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-/* Editor de Textos */
-.editor-section-title {
-    font-family: var(--font-title);
-    font-size: 13px;
-    color: var(--accent-gold);
-    border-bottom: 1px solid var(--border-fine);
-    padding-bottom: 4px;
-    margin: 24px 0 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
 
 /* Tarjetas de Respaldo */
 .backup-box-container {
@@ -891,11 +801,6 @@ body {
     font-style: italic;
 }
 
-.quiet-badge-secret {
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-}
 
 
 /* Sidebar Cart Drawer */
@@ -1278,37 +1183,6 @@ body {
 }
 
 /* Modal Admin Base */
-.btn-admin-flotante {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: var(--text-espresso);
-    color: var(--bg-white);
-    padding: 14px 22px;
-    border: none;
-    border-radius: 40px;
-    font-family: var(--font-body);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 100;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    box-shadow: 0 10px 30px rgba(44, 36, 32, 0.25); 
-    display: flex; 
-    align-items: center; 
-    gap: 10px;
-}
-
-.btn-admin-flotante:hover {
-    background: var(--accent-gold);
-    color: var(--text-espresso);
-}
-
-.btn-admin-flotante .line { width: 15px; height: 1px; background: var(--accent-gold); }
 
 .modal-overlay { 
     display: none; 

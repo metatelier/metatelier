@@ -527,7 +527,7 @@ const badgePedidosCount = document.getElementById('badge-pedidos-count');
 const tabBadgePedidos = document.getElementById('tab-badge-pedidos');
 
 
-// Triple Clic Secreto Eliminado
+
 
 // Pestañas Admin
 const tabBuzonBtn = document.getElementById('tab-buzon-btn');
@@ -624,7 +624,7 @@ modalAdmin.addEventListener('click', (e) => {
     if (e.target === modalAdmin) modalAdmin.classList.remove('activo');
 });
 
-// --- 7. Editor de Marca & Textos ---
+
 
 // --- 8. Cargar y Administrar Inventario (Crear, Editar y Eliminar) ---
 btnCancelarEdicion.addEventListener('click', () => resetearFormularioProducto());
@@ -915,7 +915,7 @@ window.eliminarPedido = async (id) => {
 // --- 9. Respaldos y Restauración GIT (GitHub) ---
 const btnExportBackup = document.getElementById('btn-export-backup');
 const btnImportBackup = document.getElementById('btn-import-backup');
-const selectGitVersion = document.getElementById('select-git-version');
+
 
 async function cargarVersionesGit() {
     const select = document.getElementById('select-git-version');
